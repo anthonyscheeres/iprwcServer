@@ -14,7 +14,7 @@ public class PermissionDAO {
 	 String tableName = "app_user";
 	 private DatabaseModel databaseModel = DataModel.getApplicationModel().getServers().get(0).getDatabase().get(0);
 	 AuthenticationController autenticationController = new AuthenticationController();
-	 private UserDatabase userDatabase = new UserDatabase();
+	 private UserDAO userDatabase = new UserDAO();
 
 
 

@@ -10,7 +10,7 @@ import main.java.nl.iipsen2server.controlllers.UserController;
 import main.java.nl.iipsen2server.models.*;
 
 
-public class UserDatabase {
+public class UserDAO {
 
 	private String tableName = "app_user";
 	private DatabaseModel databaseModel = DataModel.getApplicationModel().getServers().get(0).getDatabase().get(0);
@@ -31,7 +31,7 @@ public class UserDatabase {
 	 */
 	public boolean hasEnumHandeler(long employeeId, String permission) {
 		String query2 = "select permission from app_user where user_id=?;";
-		UserDatabase userDatabase = new UserDatabase();
+		UserDAO userDatabase = new UserDAO();
 		return userDatabase.hasPermission(permission, Long.toString(employeeId), query2);
 	}
     /**

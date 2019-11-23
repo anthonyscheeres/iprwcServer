@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import main.java.nl.iipsen2server.controlllers.AccountController;
 import main.java.nl.iipsen2server.controlllers.AuthenticationController;
 import main.java.nl.iipsen2server.controlllers.TokenController;
-import main.java.nl.iipsen2server.dao.UserDatabase;
+import main.java.nl.iipsen2server.dao.UserDAO;
 import main.java.nl.iipsen2server.models.UserModel;
 import main.java.nl.iipsen2server.models.AccountModel;
 
@@ -189,7 +189,7 @@ public class UserResource {
 	@Path("/show")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String showUsers() throws Exception {
-		UserDatabase userDatabase = new UserDatabase ();
+		UserDAO userDatabase = new UserDAO ();
 		return userDatabase.showUser();
 	}
 	
@@ -202,7 +202,7 @@ public class UserResource {
 	@Path("/showU")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String showUser(AccountModel u){
-		UserDatabase userDatabase = new UserDatabase();
+		UserDAO userDatabase = new UserDAO();
 		return userDatabase.showOneUserPermission(u);
 	}
 }	

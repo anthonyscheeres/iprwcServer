@@ -14,7 +14,7 @@ import main.java.nl.iipsen2server.models.UserModel;
 import main.java.nl.iipsen2server.dao.DatabaseUtilities;
 import main.java.nl.iipsen2server.dao.PermissionDAO;
 import main.java.nl.iipsen2server.dao.PreparedStatmentDatabaseUtilities;
-import main.java.nl.iipsen2server.dao.UserDatabase;
+import main.java.nl.iipsen2server.dao.UserDAO;
 import main.java.nl.iipsen2server.models.AccountModel;
 
 
@@ -24,7 +24,7 @@ import main.java.nl.iipsen2server.models.AccountModel;
 
 
 public class AccountController {
-private UserDatabase userDatabase = new UserDatabase();
+private UserDAO userDatabase = new UserDAO();
 private PermissionDAO permissionDatabase = new PermissionDAO();
 
 
@@ -146,7 +146,7 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
     	}
     	if (hashmap.get("permission").get(index).contains("READ")) {
     		  MailController mailController = new MailController();
-    		  UserDatabase userDatabase = new UserDatabase();
+    		  UserDAO userDatabase = new UserDAO();
    		   String newToken = mailController.generateToken();
    		   System.out.println(newToken);
     		userDatabase.changeToken(newToken,  Integer.parseInt(hashmap.get("user_id").get(index)));
