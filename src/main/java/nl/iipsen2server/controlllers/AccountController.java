@@ -138,7 +138,13 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
    hashmap = userDatabase.getUserInfo();
    for (int index = 0; index < hashmap.get("username").size(); index++) {
     if (checkCredentials(hashmap.get("username").get(index), hashmap.get("password").get(index), u)) {
-  
+    	
+    	boolean hasPermission = hashmap.get("permission").get(index).length() ==0     ;
+    	if(hasPermission) {
+    		   System.out.println("fail");
+    		return hashmap.get("token").get(index);
+    	}
+    	if (hashmap.get("permission").get(index).contains("READ")) {
     		  MailController mailController = new MailController();
     		  UserDatabase userDatabase = new UserDatabase();
    		   String newToken = mailController.generateToken();
@@ -148,7 +154,7 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
     	}
  	   System.out.println("fail2");
      return hashmap.get("token").get(index);
-    
+    }
    }
   } catch (Exception e) {
    e.printStackTrace();
