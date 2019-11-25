@@ -4,6 +4,7 @@ import main.java.nl.iipsen2server.dao.ExperimentDatabase;
 
 import main.java.nl.iipsen2server.dao.ExperimentDAO;
 import main.java.nl.iipsen2server.models.ExperimentModel;
+import main.java.nl.iipsen2server.models.Permission;
 
 
 
@@ -18,7 +19,7 @@ public class ExperimentController {
  */
     public void deleteExperiment(ExperimentModel project, String token) {
         String userID = tokenController.tokenToUserId(token);
-        if(authenticationController.hasPermission(Long.parseLong(userID), "DELETE")){
+        if(authenticationController.hasPermission(Long.parseLong(userID), Permission.DELETE.toString())){
             experimentDAO.deleteExperiment(project);
         }
     }
@@ -43,7 +44,7 @@ public class ExperimentController {
   */
     public void showOverview(String token) {
         String userID = tokenController.tokenToUserId(token);
-        authenticationController.hasPermission(Long.parseLong(userID), "READ");
+        authenticationController.hasPermission(Long.parseLong(userID), Permission.READ.toString());
     }
 
 }

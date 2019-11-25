@@ -7,6 +7,7 @@ import main.java.nl.iipsen2server.controlllers.AuthenticationController;
 import main.java.nl.iipsen2server.models.DataModel;
 import main.java.nl.iipsen2server.models.DatabaseModel;
 import main.java.nl.iipsen2server.models.Permission;
+import main.java.nl.iipsen2server.models.Response;
 import main.java.nl.iipsen2server.models.AccountModel;
 
 public class AuthenticationDAO {
@@ -28,9 +29,10 @@ public class AuthenticationDAO {
 	  */
 	 public boolean giveRead2(AccountModel u) {
 		  String query2 = "select permission from app_user where username=?;";
-	 if (!userDatabase.hasPermission("READ", u.getUsername(), query2)) {
+		  Enum permission = Permission.READ;
+	 if (!userDatabase.hasPermission(permission.toString(), u.getUsername(), query2)) {
 		  try {
-			givePermission(u, Permission.READ);
+			givePermission(u, permission);
 			 return true;
 		} catch (Exception e) {
 		}
@@ -47,9 +49,10 @@ public class AuthenticationDAO {
 	 */
 	 public boolean giveWrite2(AccountModel u) {
 		  String query2 = "select permission from app_user where username=?;";
-	 if (!userDatabase.hasPermission("WRITE", u.getUsername(), query2)) {
+		  Enum permission = Permission.WRITE;
+	 if (!userDatabase.hasPermission(permission.toString(), u.getUsername(), query2)) {
 		  try {
-			  givePermission(u, Permission.WRITE);
+			  givePermission(u, permission);
 			 return true;
 		} catch (Exception e) {
 		
@@ -66,9 +69,10 @@ public class AuthenticationDAO {
 	  */
 	 public boolean giveDelete2(AccountModel accountModel) {
 		  String query2 = "select permission from app_user where username=?;";
-		  if (!userDatabase.hasPermission("DELETE", accountModel.getUsername(), query2)) {
+		  Enum permission = Permission.DELETE;
+		  if (!userDatabase.hasPermission(Permission.DELETE.toString(), accountModel.getUsername(), query2)) {
 		 	  try {
-		 		  givePermission(accountModel, Permission.DELETE);
+		 		  givePermission(accountModel, permission);
 		 		 return true;
 		 	} catch (Exception e) {
 		 	}
@@ -119,6 +123,6 @@ public class AuthenticationDAO {
 			e.printStackTrace();
 		}
 
-		return "fail";
+		return Response.fail.toString();
 	}
 }

@@ -17,6 +17,7 @@ import main.java.nl.iipsen2server.controlllers.TokenController;
 import main.java.nl.iipsen2server.dao.UserDAO;
 import main.java.nl.iipsen2server.models.UserModel;
 import main.java.nl.iipsen2server.models.AccountModel;
+import main.java.nl.iipsen2server.models.Permission;
 
 
 
@@ -90,7 +91,7 @@ public class UserResource {
 	@POST
 	@Path("/{token}/hasRead")
 	public Object hasRead(@PathParam("token") String token)  {
-		return authenticationController.validate(token, "READ");
+		return authenticationController.validate(token,Permission.READ.toString());
 		
 	}
 	
@@ -106,7 +107,7 @@ public class UserResource {
 	@POST
 	@Path("/{token}/hasWrite")
 	public Object hasWrite(@PathParam("token") String token)  {
-		return authenticationController.validate(token, "WRITE");
+		return authenticationController.validate(token, Permission.WRITE.toString());
 		
 	}
 	
@@ -122,7 +123,7 @@ public class UserResource {
 	@POST
 	@Path("/{token}/hasDelete")
 	public boolean hasDelete(@PathParam("token") String token)  {
-		return authenticationController.validate(token, "DELETE");
+		return authenticationController.validate(token, Permission.DELETE.toString());
 		
 	}
 	

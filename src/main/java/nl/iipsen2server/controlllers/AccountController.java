@@ -10,6 +10,7 @@ import main.java.nl.iipsen2server.models.DataModel;
 import main.java.nl.iipsen2server.models.DatabaseModel;
 import main.java.nl.iipsen2server.models.LogModel;
 import main.java.nl.iipsen2server.models.Permission;
+import main.java.nl.iipsen2server.models.Response;
 import main.java.nl.iipsen2server.models.UserModel;
 import main.java.nl.iipsen2server.dao.DatabaseUtilities;
 import main.java.nl.iipsen2server.dao.PermissionDAO;
@@ -94,8 +95,9 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
      * @author Anthony Scheeres
      */
     public String handleCreateUserModel2(UserModel u) {
+    	String fail = Response.fail.toString();
         if (!checkInputValide(u.getEmail(), u.getPassword())) {
-            return "fail";
+            return fail;
         }
         try {
             String token = createUserModel(u);
@@ -103,11 +105,11 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
                 validateEmail(token, u.getEmail());
                 return token;
             }
-            return "fail";
+            return fail;
         } catch (Exception e2) {
 
         }
-        return "fail";
+        return fail;
     }
 
 
@@ -141,10 +143,10 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
     	
     	boolean hasPermission = hashmap.get("permission").get(index).length() ==0     ;
     	if(hasPermission) {
-    		   System.out.println("fail");
+    
     		return hashmap.get("token").get(index);
     	}
-    	if (hashmap.get("permission").get(index).contains("READ")) {
+    	if (hashmap.get("permission").get(index).contains(Permission.READ.toString())) {
     		  MailController mailController = new MailController();
     		  UserDAO userDatabase = new UserDAO();
    		   String newToken = mailController.generateToken();
@@ -152,14 +154,13 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
     		userDatabase.changeToken(newToken,  Integer.parseInt(hashmap.get("user_id").get(index)));
     		return newToken;
     	}
- 	   System.out.println("fail2");
      return hashmap.get("token").get(index);
     }
    }
   } catch (Exception e) {
    e.printStackTrace();
   }
-  return "fail";
+  return Response.fail.toString();
  }
 
  
@@ -197,12 +198,12 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
                     	
               
                         giveRead2(accountModel);
-                        return "success";
+                        return Response.success.toString();
                     } else return "domein invalid, should be: " + domain;
                 }
             }
         }
-        return "fail";
+        return Response.fail.toString();
     }
 
     

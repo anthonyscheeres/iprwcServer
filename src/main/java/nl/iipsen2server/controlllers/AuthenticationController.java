@@ -6,6 +6,8 @@ import main.java.nl.iipsen2server.dao.AuthenticationDAO;
 import main.java.nl.iipsen2server.models.DataModel;
 import main.java.nl.iipsen2server.models.DatabaseModel;
 import main.java.nl.iipsen2server.models.LogModel;
+import main.java.nl.iipsen2server.models.Permission;
+import main.java.nl.iipsen2server.models.Response;
 import main.java.nl.iipsen2server.models.UserModel;
 import main.java.nl.iipsen2server.dao.PermissionDAO;
 import main.java.nl.iipsen2server.dao.PreparedStatmentDatabaseUtilities;
@@ -34,7 +36,7 @@ public class AuthenticationController {
 		TokenController tokenController = new TokenController();
 		long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
 		if (!hasSuperPermission(employeeId)) {
-			return "fail";
+			return Response.fail.toString();
 		}
 		if (accountController.giveRead2(u)) {
 			loggingController.createLog(
@@ -45,9 +47,9 @@ public class AuthenticationController {
 							new UserModel(null, null, employeeId, null, null), 
 							0 
 							), 0);
-			return "success";
+			return Response.success.toString();
 		}
-		return "fail";
+		return Response.fail.toString();
 		}
 
 
@@ -64,7 +66,7 @@ public class AuthenticationController {
 		TokenController tokkenController = new TokenController();
 		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
 		if (!hasSuperPermission(employeeId)) {
-			return "fail";
+			return Response.fail.toString();
 		}
 		
 		
@@ -82,9 +84,9 @@ public class AuthenticationController {
 						null
 						), 
 				0 ), 0);
-		return "success";
+		return Response.success.toString();
 	}
-	return "fail";
+	return Response.fail.toString();
 	}
 
 
@@ -97,7 +99,7 @@ public class AuthenticationController {
 	  */
 	public boolean hasSuperPermission(long employeeId) {
 		AuthenticationDAO authenticationDAO = new AuthenticationDAO();
-		if (authenticationDAO.hasEnumHandeler(employeeId, "WRITE") && authenticationDAO.hasEnumHandeler(employeeId, "READ") && authenticationDAO.hasEnumHandeler(employeeId, "DELETE")){
+		if (authenticationDAO.hasEnumHandeler(employeeId, Permission.WRITE.toString()) && authenticationDAO.hasEnumHandeler(employeeId, Permission.READ.toString()) && authenticationDAO.hasEnumHandeler(employeeId, Permission.DELETE.toString())){
 			return true;
 		}
 		return false;
@@ -115,7 +117,7 @@ public class AuthenticationController {
 		LoggingController loggingController = new LoggingController();
 		AccountController accountController = new AccountController();
 		if (!hasSuperPermission(employeeId)) {
-			return "fail";
+			return Response.fail.toString();
 		}
 	if (accountController.giveDelete2(u)) {
 			
@@ -132,9 +134,9 @@ public class AuthenticationController {
 									null),
 							0 
 							), 0);
-			return "success";
+			return Response.success.toString();
 	}
-	return "fail";
+	return Response.fail.toString();
 	}
 
 

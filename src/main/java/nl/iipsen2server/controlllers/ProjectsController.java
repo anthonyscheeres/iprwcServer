@@ -2,6 +2,7 @@ package main.java.nl.iipsen2server.controlllers;
 
 import main.java.nl.iipsen2server.dao.ProjectDAO;
 import main.java.nl.iipsen2server.models.ExperimentModel2;
+import main.java.nl.iipsen2server.models.Response;
 import main.java.nl.iipsen2server.models.Status;
 
 public class ProjectsController {
@@ -15,14 +16,14 @@ public class ProjectsController {
         long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
 
         if (!authenticationController.hasSuperPermission(employeeId)) {
-            return "fail";
+            return Response.fail.toString();
         }
         //write model to db
         ProjectDAO projectDatabase = new ProjectDAO();
         projectDatabase.sendProject(new ExperimentModel2());
 
 
-        return "fail";
+        return Response.fail.toString();
     }
 
     /*
@@ -35,7 +36,7 @@ public class ProjectsController {
         long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
 
         if (!authenticationController.hasSuperPermission(employeeId)) {
-            return "fail";
+            return Response.fail.toString();
         }
 
         //project delete model
@@ -43,6 +44,6 @@ public class ProjectsController {
         deleteDatabase.deleteProject(new ExperimentModel2());
 
 
-        return "fail";
+        return Response.fail.toString();
     }
 }
