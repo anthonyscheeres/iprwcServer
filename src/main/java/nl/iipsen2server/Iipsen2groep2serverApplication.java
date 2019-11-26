@@ -85,7 +85,7 @@ class Iipsen2groep2serverApplication extends Application<Configuration> {
 	    	ApplicationModel p = a.createNewApplicationModel("TestLab");
 	    	ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 	    	String url = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
-	    	String folder = "webshopServer";
+	    	String folder = "TestLabServer";
 	    	String file = "config.yml";
 	    	String path = url +"/" + folder +"/"+ file;
 	        try {

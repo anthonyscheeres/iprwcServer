@@ -11,6 +11,7 @@ import main.java.nl.iipsen2server.models.DatabaseModel;
 import main.java.nl.iipsen2server.models.LogModel;
 import main.java.nl.iipsen2server.models.Permission;
 import main.java.nl.iipsen2server.models.Response;
+import main.java.nl.iipsen2server.models.User;
 import main.java.nl.iipsen2server.models.UserModel;
 import main.java.nl.iipsen2server.dao.DatabaseUtilities;
 import main.java.nl.iipsen2server.dao.PermissionDAO;
@@ -138,23 +139,28 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
   HashMap < String, List < String >> hashmap;
   try {
    hashmap = userDatabase.getUserInfo();
-   for (int index = 0; index < hashmap.get("username").size(); index++) {
-    if (checkCredentials(hashmap.get("username").get(index), hashmap.get("password").get(index), u)) {
-    	
-    	boolean hasPermission = hashmap.get("permission").get(index).length() ==0     ;
-    	if(hasPermission) {
+   List<String> users = hashmap.get(User.username.toString());
+   for (int index = 0; index < users.size(); index++) {
+	   
+	   
+	   String username = hashmap.get(User.username.toString()).get(index);
+	   String passwordFromDatabase = hashmap.get(User.password.toString()).get(index); 
+	   String passwordFromClient = u.getPassword();
+	   String token = hashmap.get(User.token.toString()).get(index);
+	   String permission = hashmap.get(User.permission.toString()).get(index);
+	   String UserId = hashmap.get(User.user_id.toString()).get(index);
+	   
+    if (checkCredentials(username, passwordFromDatabase,  passwordFromClient)) {
     
-    		return hashmap.get("token").get(index);
+    	boolean hasPermission = permission.length() ==0;
+    	if(hasPermission) {
+    		return token;
     	}
-    	if (hashmap.get("permission").get(index).contains(Permission.READ.toString())) {
-    		  MailController mailController = new MailController();
-    		  UserDAO userDatabase = new UserDAO();
-   		   String newToken = mailController.generateToken();
-   		   System.out.println(newToken);
-    		userDatabase.changeToken(newToken,  Integer.parseInt(hashmap.get("user_id").get(index)));
-    		return newToken;
+    	if (permission.contains(Permission.READ.toString())) {
+    		 String newToken =  askNewTokenForAccount(Integer.parseInt(UserId));
+    		  return newToken;
     	}
-     return hashmap.get("token").get(index);
+     return token;
     }
    }
   } catch (Exception e) {
@@ -162,7 +168,18 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
   }
   return Response.fail.toString();
  }
-
+ 
+ 
+ /**
+  * @author Anthony Scheeres
+  */
+private String askNewTokenForAccount(int id) {
+	  MailController mailController = new MailController();
+	  UserDAO userDatabase = new UserDAO();
+	  String newToken = mailController.generateToken();
+	  userDatabase.changeToken(newToken, id);
+	  return newToken;
+}
  
  
  
@@ -174,9 +191,8 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
   * 
   *
   */
- private boolean checkCredentials(String username, String password, UserModel u) throws AuthenticationException {
-  if (username.equals(u.getUsername()) && password.equals(u.getPassword())) {
-   System.out.println("succes");
+ public boolean checkCredentials(String username, String password, String password2){
+  if (username.equals(password2) && password.equals(password2)) {
    return true;
   }
   return false;
@@ -189,14 +205,16 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
         MailController mailController = new MailController();
         HashMap<String, List<String>> data = mailController.getTokens();
         String domain = "OM.NL";
-        for (int i = 0; i < data.get("token").size(); i++) {
-            if (data.get("email").get(i) != null && data.get("token").get(i) != null) {
-                if (token.equals(data.get("token").get(i))) {
-                	String yourDomain = getDomeinNameFromMail(data.get("email").get(i).toUpperCase());
+        for (int i = 0; i < data.get(User.token.toString()).size(); i++) {
+        	String email = data.get(User.email.toString()).get(i);
+        	String tokenFromDatabase = data.get(User.token.toString()).get(i);
+        	
+        	
+            if (email != null && tokenFromDatabase != null) {
+                if (token.equals(tokenFromDatabase)) {
+                	String yourDomain = getDomeinNameFromMail(email.toUpperCase());
                     if ( yourDomain.equals(domain)) {
-                    	String accountModel = data.get("username").get(i); //use username to uniquely identify a user 
-                    	
-              
+                    	String accountModel = data.get(User.username.toString()).get(i); //use username to uniquely identify a user 
                         giveRead2(accountModel);
                         return Response.success.toString();
                     } else return "domein invalid, should be: " + domain;
@@ -206,7 +224,9 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
         return Response.fail.toString();
     }
 
-    
+    /**
+     * @author Anthony Scheeres
+     */
     private String getDomeinNameFromMail(String email){
     	return email.split("@")[1];
     }

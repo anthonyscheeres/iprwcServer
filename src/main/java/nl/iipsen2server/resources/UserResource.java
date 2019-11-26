@@ -50,7 +50,7 @@ public class UserResource {
 	/**
 	*
 	* @author Anthony Scheeres
-	 * @return 
+	* @return 
 	* 
 	*
 	*/
