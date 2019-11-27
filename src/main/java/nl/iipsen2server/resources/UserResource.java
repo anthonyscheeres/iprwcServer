@@ -172,12 +172,13 @@ public class UserResource {
 	/**
 	*
 	* @author Anthony Scheeres
+	 * @throws Exception 
 	*
 	*/
 	@POST
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String checkLogin(UserModel u)  {
+	public String checkLogin(UserModel u) throws Exception  {
 		return accountController.checkLogin(u);
 	}
 	
