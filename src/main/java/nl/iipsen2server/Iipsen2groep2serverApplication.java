@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
+import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import main.java.nl.iipsen2server.controlllers.*;
@@ -15,6 +16,7 @@ import main.java.nl.iipsen2server.models.DataModel;
 import main.java.nl.iipsen2server.models.ServerModel;
 import main.java.nl.iipsen2server.resources.ExperimentResource;
 import main.java.nl.iipsen2server.resources.LogResource;
+import main.java.nl.iipsen2server.resources.ProductResource;
 import main.java.nl.iipsen2server.resources.UserResource;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -68,9 +70,11 @@ class Iipsen2groep2serverApplication extends Application<Configuration> {
 
 	        // Add URL mapping
 	        cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
-			environment.jersey().register(new UserResource());
-			environment.jersey().register(new LogResource());
-			environment.jersey().register(new ExperimentResource());
+	        JerseyEnvironment jersey = environment.jersey();
+			jersey.register(new UserResource());
+			jersey.register(new LogResource());
+			jersey.register(new ExperimentResource());
+			jersey.register(new ProductResource());
 	    
 	    }
 	    
@@ -85,7 +89,7 @@ class Iipsen2groep2serverApplication extends Application<Configuration> {
 	    	ApplicationModel p = a.createNewApplicationModel("TestLab");
 	    	ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 	    	String url = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
-	    	String folder = "TestLabServer";
+	    	String folder = "webshopServer";
 	    	String file = "config.yml";
 	    	String path = url +"/" + folder +"/"+ file;
 	        try {
