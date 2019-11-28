@@ -24,6 +24,16 @@ public class MailController {
 	 }
 	 
 	 
+	 public static void sendMailOnDifferentThread(String text, String mailFrom, String mailTo, String subject) {
+		 new Thread(() -> {
+     		try {
+					sendMail(text, mailFrom, mailTo, subject);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+     	}).start();
+	 }
 	 
 	 /**
 	  * @author Anthony Scheeres

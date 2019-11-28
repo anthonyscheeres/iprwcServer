@@ -126,7 +126,7 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
     	String link = message + linkToServer;
     	RestApiModel database =   DataModel.getApplicationModel().getServers().get(0).getRestApi().get(0);
     	String title = "Valideer u email!";
-        MailController.sendMail(String.format(
+        MailController.sendMailOnDifferentThread(String.format(
                link,
                 database.getHostName(),
                 database.getPortNumber(),
