@@ -13,7 +13,6 @@ import io.dropwizard.setup.Environment;
 import main.java.nl.iipsen2server.models.ApplicationModel;
 import main.java.nl.iipsen2server.models.DataModel;
 import main.java.nl.iipsen2server.models.ServerModel;
-import main.java.nl.iipsen2server.resources.ExperimentResource;
 import main.java.nl.iipsen2server.resources.LogResource;
 import main.java.nl.iipsen2server.resources.ProductResource;
 import main.java.nl.iipsen2server.resources.UserResource;
@@ -74,7 +73,6 @@ class Iipsen2groep2serverApplication extends Application<Configuration> {
 	        JerseyEnvironment jersey = environment.jersey();
 			jersey.register(new UserResource());
 			jersey.register(new LogResource());
-			jersey.register(new ExperimentResource());
 			jersey.register(new ProductResource());
 	    
 	    }

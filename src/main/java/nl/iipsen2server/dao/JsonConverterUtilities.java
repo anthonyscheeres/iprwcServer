@@ -14,9 +14,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import main.java.nl.iipsen2server.models.ApplicationModel;
-import main.java.nl.iipsen2server.models.RefrigeratorModel;
 import main.java.nl.iipsen2server.models.UserModel;
-import main.java.nl.iipsen2server.models.DashboardModel;
+
 
 /**
  * @author Anthony Scheeres
@@ -44,13 +43,6 @@ class JsonConverterUtilities {
     }
 
 
-    /**
-     * @author Anthony Scheeres
-     */
-    public RefrigeratorModel convertToRefrigeratorModel(String jsonInString) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonInString, RefrigeratorModel.class);
-    }
 
     /**
      * @author Anthony Scheeres
@@ -68,22 +60,7 @@ class JsonConverterUtilities {
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(applicationModel);
     }
 
-    /**
-     * @author Anthony Scheeres
-     */
-    public String convertToJson(DashboardModel dashboardModel) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dashboardModel);
-    }
-
-    /**
-     * @author Anthony Scheeres
-     */
-    public DashboardModel convertToDashboardModel(String jsonInString) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(jsonInString, DashboardModel.class);
-    }
-
+   
     /**
      * @author Anthony Scheeres
      */
