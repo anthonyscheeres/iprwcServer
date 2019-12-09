@@ -85,12 +85,17 @@ class Iipsen2groep2serverApplication extends Application<Configuration> {
 	    	RestApiController r = new RestApiController();
 	    	DatabaseController f = new DatabaseController();
 	    	DirectoryController y = new DirectoryController();
-	    	ApplicationModel p = a.createNewApplicationModel("TestLab");
+	    	ApplicationModel p = new ApplicationModel();
+	    	
 	    	ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 	    	String url = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
 	    	String folder = "webshopServer";
 	    	String file = "config.yml";
 	    	String path = url +"/" + folder +"/"+ file;
+	    	p.setName("WebshopApp");
+	    	
+	    	
+	    	
 	        try {
 	        	
 	        	mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
