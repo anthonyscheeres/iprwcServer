@@ -85,19 +85,14 @@ class Iipsen2groep2serverApplication extends Application<Configuration> {
 	    	RestApiController r = new RestApiController();
 	    	DatabaseController f = new DatabaseController();
 	    	DirectoryController y = new DirectoryController();
-	    	ApplicationModel p = new ApplicationModel();
-	    	
+	    	ApplicationModel p = new ApplicationModel();  	
 	    	ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 	    	String url = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
 	    	String folder = "webshopServer";
 	    	String file = "config.yml";
 	    	String path = url +"/" + folder +"/"+ file;
 	    	p.setName("WebshopApp");
-	    	
-	    	
-	    	
 	        try {
-	        	
 	        	mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 	        	ServerModel server = mapper.readValue(new File(path), ServerModel.class);
 	            System.out.println(ReflectionToStringBuilder.toString(server,ToStringStyle.MULTI_LINE_STYLE));
@@ -113,7 +108,6 @@ class Iipsen2groep2serverApplication extends Application<Configuration> {
 	    		m.createNewMailModel("****@gmail.com", "******", g);
 	    		// Write object as YAML file
 	    		String yaml = mapper.writeValueAsString(g);
-	    		System.out.println(yaml);
 	    		y.writeFileToDocuments(folder, file, yaml);
 	        }
 	    	

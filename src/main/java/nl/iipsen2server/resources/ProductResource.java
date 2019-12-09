@@ -57,7 +57,7 @@ public class ProductResource {
 	@Path("/{token}/changeImg")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void changeProductModelImg(ProductModel u, @PathParam("token") String token) throws Exception  {
-		 productController.handleCreateProduct(u, token);
+		 productController.handleChangeImgProduct(u, token);
 	}
 	
 	
