@@ -3,10 +3,14 @@ package main.java.nl.iipsen2server.models;
 public class ProductModel {
 	private String name_p;
 	private int price;
-	public ProductModel(String name_p, int price) {
+	private   byte img ;
+	private long id ;
+	public ProductModel(String name_p, int price, byte img, long id) {
 		super();
 		this.name_p = name_p;
 		this.price = price;
+		this.img = img;
+		this.id = id;
 	}
 	public String getName_p() {
 		return name_p;
@@ -20,6 +24,19 @@ public class ProductModel {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public byte getImg() {
+		return img;
+	}
+	public void setImg(byte img) {
+		this.img = img;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	
 	
 }

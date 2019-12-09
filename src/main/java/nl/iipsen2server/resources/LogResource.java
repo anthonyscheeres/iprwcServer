@@ -3,9 +3,9 @@ package main.java.nl.iipsen2server.resources;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-import main.java.nl.iipsen2server.controlllers.ExperimentController;
-import main.java.nl.iipsen2server.controlllers.LoggingController;
 import main.java.nl.iipsen2server.models.LogModel;
+import main.java.nl.iipsen2server.services.ExperimentController;
+import main.java.nl.iipsen2server.services.LoggingController;
 
 
 /**

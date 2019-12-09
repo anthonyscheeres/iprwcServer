@@ -10,12 +10,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-
-import main.java.nl.iipsen2server.controlllers.AccountController;
-import main.java.nl.iipsen2server.controlllers.AuthenticationController;
-import main.java.nl.iipsen2server.controlllers.TokenController;
 import main.java.nl.iipsen2server.dao.UserDAO;
 import main.java.nl.iipsen2server.models.UserModel;
+import main.java.nl.iipsen2server.services.AccountController;
+import main.java.nl.iipsen2server.services.AuthenticationController;
+import main.java.nl.iipsen2server.services.TokenController;
 import main.java.nl.iipsen2server.models.AccountModel;
 import main.java.nl.iipsen2server.models.Permission;
 

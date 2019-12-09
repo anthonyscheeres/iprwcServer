@@ -1,7 +1,7 @@
 package main.java.nl.iipsen2server.resources;
 
-import main.java.nl.iipsen2server.controlllers.ProjectsController;
 import main.java.nl.iipsen2server.models.ExperimentModel2;
+import main.java.nl.iipsen2server.services.ProjectsController;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;

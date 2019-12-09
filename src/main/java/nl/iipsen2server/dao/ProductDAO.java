@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import main.java.nl.iipsen2server.controlllers.MailController;
-import main.java.nl.iipsen2server.controlllers.UserController;
 import main.java.nl.iipsen2server.models.DataModel;
 import main.java.nl.iipsen2server.models.DatabaseModel;
 import main.java.nl.iipsen2server.models.ProductModel;
 import main.java.nl.iipsen2server.models.UserModel;
+import main.java.nl.iipsen2server.services.MailController;
+import main.java.nl.iipsen2server.services.UserController;
 
 public class ProductDAO {
 	private String tableName = "product";
 	private DatabaseModel databaseModel = DataModel.getApplicationModel().getServers().get(0).getDatabase().get(0);
-
+	private String table = "product";
 	   /**
      * @author Anthony Scheeres
      */
@@ -25,13 +25,22 @@ public class ProductDAO {
         return d.connectThisDatabase2(databaseModel, query);
     }
 
-	public void addProduct(ProductModel product) throws Exception {
-		   /**
-	     * @author Anthony Scheeres
-	     */
+    
+    /**
+     * @author Anthony Scheeres
+     */
+    public HashMap<String, List<String>> getProducts() throws Exception {
+        DatabaseUtilities d = new DatabaseUtilities();
+        String query = String.format("select name, id from %s;", tableName);
+        return d.connectThisDatabase(databaseModel, query);
+    }
 
+    
+    
+    
+	public void addProduct(ProductModel product) throws Exception {
 	        PreparedStatmentDatabaseUtilities pUtilites = new PreparedStatmentDatabaseUtilities();
-	        String query2 = "INSERT INTO app_user(name_p, price) VALUES (" +
+	        String query2 = "INSERT INTO product(name_p, price) VALUES (" +
 	                "?," +
 	                "?" +
 	                ");";
@@ -39,9 +48,18 @@ public class ProductDAO {
 	        List<String> variables = new ArrayList<>();
 	        variables.add(product.getName_p());
 	        variables.add(Integer.toString(product.getPrice()));
-	  
+	   
 	        pUtilites.connectDatabaseJson(databaseModel, query2, variables, false);
 	    }
+
+	public void changeImg(ProductModel product) {
+		byte img = product.getImg();
+		long id = product.getId();
+		String query = String.format("UPDATE %s\r\n" + 
+				"   img\r\n" + 
+				"SET %s"
+				+ "where id = %d", table , img, id);
+	}
 		
 	}
     

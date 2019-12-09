@@ -1,9 +1,9 @@
 package main.java.nl.iipsen2server.resources;
 
 
-import main.java.nl.iipsen2server.controlllers.ExperimentController;
 import main.java.nl.iipsen2server.dao.ExperimentDatabase;
 import main.java.nl.iipsen2server.models.ExperimentModel;
+import main.java.nl.iipsen2server.services.ExperimentController;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

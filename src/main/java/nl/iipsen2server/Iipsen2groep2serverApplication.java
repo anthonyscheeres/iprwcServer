@@ -10,7 +10,6 @@ import io.dropwizard.Configuration;
 import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import main.java.nl.iipsen2server.controlllers.*;
 import main.java.nl.iipsen2server.models.ApplicationModel;
 import main.java.nl.iipsen2server.models.DataModel;
 import main.java.nl.iipsen2server.models.ServerModel;
@@ -18,6 +17,8 @@ import main.java.nl.iipsen2server.resources.ExperimentResource;
 import main.java.nl.iipsen2server.resources.LogResource;
 import main.java.nl.iipsen2server.resources.ProductResource;
 import main.java.nl.iipsen2server.resources.UserResource;
+import main.java.nl.iipsen2server.services.*;
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.eclipse.jetty.servlets.CrossOriginFilter;

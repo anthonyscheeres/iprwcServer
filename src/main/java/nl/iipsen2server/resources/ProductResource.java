@@ -8,9 +8,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import main.java.nl.iipsen2server.controlllers.ProductController;
 import main.java.nl.iipsen2server.models.ProductModel;
 import main.java.nl.iipsen2server.models.UserModel;
+import main.java.nl.iipsen2server.services.ProductController;
 
 /**
 *
@@ -41,8 +41,30 @@ public class ProductResource {
 	@POST
 	@Path("/{token}/create")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void createUserModel(ProductModel u, @PathParam("token") String token) throws Exception  {
+	public void createProductModel(ProductModel u, @PathParam("token") String token) throws Exception  {
 		 productController.handleCreateProduct(u, token);
 	}
+	
+	
+	
+	/**
+	*
+	* @author Anthony Scheeres
+	 * @throws Exception 
+	* 
+	*/
+	@POST
+	@Path("/{token}/changeImg")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void changeProductModelImg(ProductModel u, @PathParam("token") String token) throws Exception  {
+		 productController.handleCreateProduct(u, token);
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

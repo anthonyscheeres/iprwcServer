@@ -3,10 +3,10 @@ package main.java.nl.iipsen2server.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.nl.iipsen2server.controlllers.AuthenticationController;
 import main.java.nl.iipsen2server.models.DataModel;
 import main.java.nl.iipsen2server.models.DatabaseModel;
 import main.java.nl.iipsen2server.models.Permission;
+import main.java.nl.iipsen2server.services.AuthenticationController;
 import main.java.nl.iipsen2server.models.AccountModel;
 
 public class PermissionDAO {
