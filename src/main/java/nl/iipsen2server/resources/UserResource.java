@@ -1,4 +1,4 @@
-package main.java.nl.iipsen2server.resources;
+package nl.iipsen2server.resources;
 
 
 

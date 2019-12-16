@@ -1,4 +1,4 @@
-package main.java.nl.iipsen2server.services;
+package nl.iipsen2server.services;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

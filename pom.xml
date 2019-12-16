@@ -6,35 +6,34 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>nl.iipsen2-server</groupId>
-    <artifactId>Iipsen2groep2-server</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>nl.ipsen3server</groupId>
+    <artifactId>Ipsen3groep2server</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>Iipsen2groep2-server</name>
+    <name>Ipsen3groep2server</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dropwizard.version>1.3.15</dropwizard.version>
-        <mainClass>nl.iipsen2-server.Iipsen2groep2-serverApplication</mainClass>
+        <mainClass>nl.ipsen3server.Ipsen3groep2serverApplication</mainClass>
     </properties>
 
 
-
-  <build>
-  
-    <sourceDirectory>src</sourceDirectory>
-    <plugins>
-    
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <plugins>
             <plugin>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.4.1</version>
                 <configuration>
                     <createDependencyReducedPom>true</createDependencyReducedPom>
                     <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <mainClass>${mainClass}</mainClass>
                         </transformer>
                     </transformers>
@@ -73,7 +72,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>3.8.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -103,53 +102,39 @@
                     </execution>
                 </executions>
             </plugin>
-    
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
-        <configuration>
-          <release>8</release>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+        </plugins>
+    </build>
+
     <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.json/json -->
-<dependency>
-    <groupId>org.json</groupId>
-    <artifactId>json</artifactId>
-    <version>20190722</version>
-</dependency>
-    
-   <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
-<dependency>
-    <groupId>postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <version>9.1-901-1.jdbc4</version>
-</dependency>
-  	<dependency>
-		<groupId>com.sun.mail</groupId>
-		<artifactId>javax.mail</artifactId>
-		<version>1.6.2</version>
-	</dependency>
-<!-- https://mvnrepository.com/artifact/io.dropwizard/dropwizard-core -->
-<dependency>
-    <groupId>io.dropwizard</groupId>
-    <artifactId>dropwizard-core</artifactId>
-    <version>2.0.0-rc10</version>
-</dependency>
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20190722</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.1-901-1.jdbc4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.dropwizard/dropwizard-core -->
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-core</artifactId>
+            <version>2.0.0-rc10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.4.2</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
-
-  </dependencies>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
 </project>

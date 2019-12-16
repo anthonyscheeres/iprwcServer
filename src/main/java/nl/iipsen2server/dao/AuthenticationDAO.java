@@ -1,14 +1,14 @@
-package main.java.nl.iipsen2server.dao;
+package  nl.iipsen2server.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.nl.iipsen2server.models.DataModel;
-import main.java.nl.iipsen2server.models.DatabaseModel;
-import main.java.nl.iipsen2server.models.Permission;
-import main.java.nl.iipsen2server.models.Response;
-import main.java.nl.iipsen2server.services.AuthenticationController;
-import main.java.nl.iipsen2server.models.AccountModel;
+import nl.iipsen2server.models.DataModel;
+import nl.iipsen2server.models.DatabaseModel;
+import nl.iipsen2server.models.Permission;
+import nl.iipsen2server.models.Response;
+import nl.iipsen2server.services.AuthenticationController;
+import nl.iipsen2server.models.AccountModel;
 
 public class AuthenticationDAO {
 

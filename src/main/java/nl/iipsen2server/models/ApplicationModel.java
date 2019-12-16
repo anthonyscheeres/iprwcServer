@@ -1,4 +1,4 @@
-package main.java.nl.iipsen2server.models;
+package nl.iipsen2server.models;
 
 import java.util.List;
 

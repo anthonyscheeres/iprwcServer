@@ -1,4 +1,4 @@
-package main.java.nl.iipsen2server.dao;
+package nl.iipsen2server.dao;
 
 
 import com.sun.mail.smtp.SMTPTransport;

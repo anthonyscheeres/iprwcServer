@@ -1,4 +1,4 @@
-package main.java.nl.iipsen2server;
+package nl.iipsen2server;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -10,9 +10,9 @@ import io.dropwizard.Configuration;
 import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import main.java.nl.iipsen2server.models.ApplicationModel;
-import main.java.nl.iipsen2server.models.DataModel;
-import main.java.nl.iipsen2server.models.ServerModel;
+import nl.iipsen2server.models.ApplicationModel;
+import nl.iipsen2server.models.DataModel;
+import nl.iipsen2server.ServerModel;
 import main.java.nl.iipsen2server.resources.LogResource;
 import main.java.nl.iipsen2server.resources.ProductResource;
 import main.java.nl.iipsen2server.resources.UserResource;
