@@ -13,8 +13,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import main.java.nl.iipsen2server.models.ApplicationModel;
-import main.java.nl.iipsen2server.models.UserModel;
+import nl.iipsen2server.models.ApplicationModel;
+import nl.iipsen2server.models.UserModel;
 
 
 /**

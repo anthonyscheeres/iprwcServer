@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import main.java.nl.iipsen2server.models.*;
-import main.java.nl.iipsen2server.services.AuthenticationController;
-import main.java.nl.iipsen2server.services.MailController;
-import main.java.nl.iipsen2server.services.UserController;
+import nl.iipsen2server.models.*;
+import nl.iipsen2server.services.AuthenticationController;
+import nl.iipsen2server.services.MailController;
+import nl.iipsen2server.services.UserController;
 
 
 public class UserDAO {

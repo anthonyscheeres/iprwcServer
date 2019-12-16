@@ -6,19 +6,19 @@ import java.util.List;
 
 import javax.security.sasl.AuthenticationException;
 
-import main.java.nl.iipsen2server.models.DataModel;
-import main.java.nl.iipsen2server.models.DatabaseModel;
-import main.java.nl.iipsen2server.models.LogModel;
-import main.java.nl.iipsen2server.models.Permission;
-import main.java.nl.iipsen2server.models.Response;
-import main.java.nl.iipsen2server.models.RestApiModel;
-import main.java.nl.iipsen2server.models.User;
-import main.java.nl.iipsen2server.models.UserModel;
-import main.java.nl.iipsen2server.dao.DatabaseUtilities;
-import main.java.nl.iipsen2server.dao.PermissionDAO;
-import main.java.nl.iipsen2server.dao.PreparedStatmentDatabaseUtilities;
-import main.java.nl.iipsen2server.dao.UserDAO;
-import main.java.nl.iipsen2server.models.AccountModel;
+import nl.iipsen2server.models.DataModel;
+import nl.iipsen2server.models.DatabaseModel;
+import nl.iipsen2server.models.LogModel;
+import nl.iipsen2server.models.Permission;
+import nl.iipsen2server.models.Response;
+import nl.iipsen2server.models.RestApiModel;
+import nl.iipsen2server.models.User;
+import nl.iipsen2server.models.UserModel;
+import nl.iipsen2server.dao.DatabaseUtilities;
+import nl.iipsen2server.dao.PermissionDAO;
+import nl.iipsen2server.dao.PreparedStatmentDatabaseUtilities;
+import nl.iipsen2server.dao.UserDAO;
+import nl.iipsen2server.models.AccountModel;
 
 
 /**

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import main.java.nl.iipsen2server.models.DataModel;
-import main.java.nl.iipsen2server.models.DatabaseModel;
-import main.java.nl.iipsen2server.models.ProductModel;
-import main.java.nl.iipsen2server.models.UserModel;
-import main.java.nl.iipsen2server.services.MailController;
-import main.java.nl.iipsen2server.services.UserController;
+import nl.iipsen2server.models.DataModel;
+import nl.iipsen2server.models.DatabaseModel;
+import nl.iipsen2server.models.ProductModel;
+import nl.iipsen2server.models.UserModel;
+import nl.iipsen2server.services.MailController;
+import nl.iipsen2server.services.UserController;
 
 public class ProductDAO {
 	private String tableName = "product";

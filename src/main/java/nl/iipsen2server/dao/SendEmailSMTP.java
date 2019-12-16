@@ -2,7 +2,7 @@ package nl.iipsen2server.dao;
 
 
 import com.sun.mail.smtp.SMTPTransport;
-import main.java.nl.iipsen2server.models.MyAuthenticator;
+import nl.iipsen2server.models.MyAuthenticator;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.Session;

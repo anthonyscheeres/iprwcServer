@@ -13,10 +13,10 @@ import io.dropwizard.setup.Environment;
 import nl.iipsen2server.models.ApplicationModel;
 import nl.iipsen2server.models.DataModel;
 import nl.iipsen2server.ServerModel;
-import main.java.nl.iipsen2server.resources.LogResource;
-import main.java.nl.iipsen2server.resources.ProductResource;
-import main.java.nl.iipsen2server.resources.UserResource;
-import main.java.nl.iipsen2server.services.*;
+import nl.iipsen2server.resources.LogResource;
+import nl.iipsen2server.resources.ProductResource;
+import nl.iipsen2server.resources.UserResource;
+import nl.iipsen2server.services.*;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

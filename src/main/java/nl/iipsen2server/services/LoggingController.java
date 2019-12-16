@@ -8,11 +8,11 @@ import java.util.List;
 
 import org.postgresql.util.PSQLException;
 
-import main.java.nl.iipsen2server.dao.DatabaseUtilities;
-import main.java.nl.iipsen2server.dao.PreparedStatmentDatabaseUtilities;
-import main.java.nl.iipsen2server.models.DataModel;
-import main.java.nl.iipsen2server.models.DatabaseModel;
-import main.java.nl.iipsen2server.models.LogModel;
+import nl.iipsen2server.dao.DatabaseUtilities;
+import nl.iipsen2server.dao.PreparedStatmentDatabaseUtilities;
+import nl.iipsen2server.models.DataModel;
+import nl.iipsen2server.models.DatabaseModel;
+import nl.iipsen2server.models.LogModel;
 
 public class LoggingController {
 

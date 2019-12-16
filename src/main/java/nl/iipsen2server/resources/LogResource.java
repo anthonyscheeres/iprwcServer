@@ -3,8 +3,8 @@ package nl.iipsen2server.resources;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-import main.java.nl.iipsen2server.models.LogModel;
-import main.java.nl.iipsen2server.services.LoggingController;
+import nl.iipsen2server.models.LogModel;
+import nl.iipsen2server.services.LoggingController;
 
 
 /**

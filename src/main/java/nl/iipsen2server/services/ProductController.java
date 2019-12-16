@@ -3,8 +3,8 @@ package nl.iipsen2server.services;
 import java.util.HashMap;
 import java.util.List;
 
-import main.java.nl.iipsen2server.dao.ProductDAO;
-import main.java.nl.iipsen2server.models.ProductModel;
+import nl.iipsen2server.dao.ProductDAO;
+import nl.iipsen2server.models.ProductModel;
 
 public class ProductController {
 	ProductDAO DAO= new ProductDAO();

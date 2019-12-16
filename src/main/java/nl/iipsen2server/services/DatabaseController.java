@@ -3,10 +3,10 @@ package nl.iipsen2server.services;
 
 import java.util.List;
 
-import main.java.nl.iipsen2server.models.DataModel;
-import main.java.nl.iipsen2server.models.DatabaseModel;
+import nl.iipsen2server.models.DataModel;
+import nl.iipsen2server.models.DatabaseModel;
 
-import main.java.nl.iipsen2server.models.ServerModel;
+import nl.iipsen2server.models.ServerModel;
 
 
 /**

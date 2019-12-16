@@ -3,11 +3,11 @@ package nl.iipsen2server.services;
 import java.util.HashMap;
 import java.util.List;
 
-import main.java.nl.iipsen2server.dao.DatabaseUtilities;
-import main.java.nl.iipsen2server.dao.UserDAO;
-import main.java.nl.iipsen2server.models.DataModel;
-import main.java.nl.iipsen2server.models.DatabaseModel;
-import main.java.nl.iipsen2server.models.Response;
+import nl.iipsen2server.dao.DatabaseUtilities;
+import nl.iipsen2server.dao.UserDAO;
+import nl.iipsen2server.models.DataModel;
+import nl.iipsen2server.models.DatabaseModel;
+import nl.iipsen2server.models.Response;
 
 public class TokenController {
 	 

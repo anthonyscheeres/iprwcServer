@@ -6,8 +6,8 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import main.java.nl.iipsen2server.models.DataModel;
-import main.java.nl.iipsen2server.models.UserModel;
+import nl.iipsen2server.models.DataModel;
+import nl.iipsen2server.models.UserModel;
 
 
 /**

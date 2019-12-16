@@ -10,11 +10,11 @@ import javax.validation.constraints.NotNull;
 
 
 
-import main.java.nl.iipsen2server.models.ApplicationModel;
-import main.java.nl.iipsen2server.models.DataModel;
-import main.java.nl.iipsen2server.models.LogModel;
-import main.java.nl.iipsen2server.models.ServerModel;
-import main.java.nl.iipsen2server.models.UserModel;
+import nl.iipsen2server.models.ApplicationModel;
+import nl.iipsen2server.models.DataModel;
+import nl.iipsen2server.models.LogModel;
+import nl.iipsen2server.models.ServerModel;
+import nl.iipsen2server.models.UserModel;
 
 
 

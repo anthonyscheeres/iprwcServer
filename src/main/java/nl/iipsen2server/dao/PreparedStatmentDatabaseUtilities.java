@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
-import main.java.nl.iipsen2server.models.DatabaseModel;
+import nl.iipsen2server.models.DatabaseModel;
 
 public class PreparedStatmentDatabaseUtilities {
 

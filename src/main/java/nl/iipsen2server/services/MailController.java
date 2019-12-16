@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator;
 
-import main.java.nl.iipsen2server.dao.DatabaseUtilities;
-import main.java.nl.iipsen2server.dao.SendEmailSMTP;
-import main.java.nl.iipsen2server.models.DataModel;
-import main.java.nl.iipsen2server.models.DatabaseModel;
-import main.java.nl.iipsen2server.models.MailModel;
-import main.java.nl.iipsen2server.models.ServerModel;
+import nl.iipsen2server.dao.DatabaseUtilities;
+import nl.iipsen2server.dao.SendEmailSMTP;
+import nl.iipsen2server.models.DataModel;
+import nl.iipsen2server.models.DatabaseModel;
+import nl.iipsen2server.models.MailModel;
+import nl.iipsen2server.models.ServerModel;
 /**
  * @author Anthony Scheeres
  */

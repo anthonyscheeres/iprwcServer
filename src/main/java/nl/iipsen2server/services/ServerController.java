@@ -6,11 +6,11 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import main.java.nl.iipsen2server.models.DataModel;
-import main.java.nl.iipsen2server.models.DatabaseModel;
-import main.java.nl.iipsen2server.models.MailModel;
-import main.java.nl.iipsen2server.models.RestApiModel;
-import main.java.nl.iipsen2server.models.ServerModel;
+import nl.iipsen2server.models.DataModel;
+import nl.iipsen2server.models.DatabaseModel;
+import nl.iipsen2server.models.MailModel;
+import nl.iipsen2server.models.RestApiModel;
+import nl.iipsen2server.models.ServerModel;
 
 
 

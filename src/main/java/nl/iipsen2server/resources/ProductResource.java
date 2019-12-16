@@ -8,9 +8,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import main.java.nl.iipsen2server.models.ProductModel;
-import main.java.nl.iipsen2server.models.UserModel;
-import main.java.nl.iipsen2server.services.ProductController;
+import nl.iipsen2server.models.ProductModel;
+import nl.iipsen2server.models.UserModel;
+import nl.iipsen2server.services.ProductController;
 
 /**
 *
