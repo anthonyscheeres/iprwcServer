@@ -10,12 +10,18 @@ import io.dropwizard.Configuration;
 import io.dropwizard.jersey.setup.JerseyEnvironment;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import nl.ipwrc.models.ApplicationModel;
 import nl.ipwrc.models.DataModel;
 import nl.ipwrc.models.ServerModel;
 import nl.ipwrc.resources.LogResource;
 import nl.ipwrc.resources.ProductResource;
 import nl.ipwrc.resources.UserResource;
+import nl.ipwrc.services.ApplicationController;
+import nl.ipwrc.services.DatabaseController;
 import nl.ipwrc.services.DirectoryController;
+import nl.ipwrc.services.MailController;
+import nl.ipwrc.services.RestApiController;
+import nl.ipwrc.services.ServerController;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -55,7 +61,7 @@ class IpwrcServerApplication extends Application<Configuration> {
 	    public void run(Configuration configuration, Environment environment) throws Exception {
 	    	DirectoryController directoryController = new DirectoryController();
 	    	
-	    	directoryController.intializeSettings();
+	    	intializeSettings();
 	    	 // Enable CORS headers
 	        final FilterRegistration.Dynamic cors =
 	            environment.servlets().addFilter("CORS", CrossOriginFilter.class);
@@ -74,6 +80,40 @@ class IpwrcServerApplication extends Application<Configuration> {
 	    
 	    }
 	    
+	    
+	    public void intializeSettings() throws JsonProcessingException {
+	    	ApplicationController a = new ApplicationController();
+	    	ServerController e =new ServerController();
+	    	RestApiController r = new RestApiController();
+	    	DatabaseController f = new DatabaseController();
+	    	DirectoryController y = new DirectoryController();
+	    	ApplicationModel p = a.createNewApplicationModel("webshop");
+	    	ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+	    	String url = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
+	    	String folder = "webshopServer";
+	    	String file = "config.yml";
+	    	String path = url +"/" + folder +"/"+ file;
+	        try {
+	        	
+	        	mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
+	        	ServerModel server = mapper.readValue(new File(path), ServerModel.class);
+	            System.out.println(ReflectionToStringBuilder.toString(server,ToStringStyle.MULTI_LINE_STYLE));
+	            ApplicationController i = new ApplicationController();
+	            i.add(server, p);
+	            System.out.print(server);
+	        } catch (Exception e1) {
+	        	 MailController mailController = new MailController();
+	        	ServerModel serverModel = e.createNewServer();
+	        	r.createNewRest(8080, "localhost", serverModel);
+	        	//TODO Change database name to postgres2.0
+	    		f.createNewDatabase("ipsen3","ipsen3",5432,"ipsen3", "85.214.16.118", e.createNewServer());
+	    		mailController.createNewMailModel("****@gmail.com", "******", serverModel);
+	    		// Write object as YAML file
+	    		String yaml = mapper.writeValueAsString(serverModel);
+	    		System.out.println(yaml);
+	    		y.writeFileToDocuments(folder, file, yaml);
+	        }
+	    }
     
 	  
 	    

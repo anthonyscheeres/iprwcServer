@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import nl.ipsen3server.models.OrganisationModel;
 import nl.ipwrc.models.ApplicationModel;
 import nl.ipwrc.models.DataModel;
 import nl.ipwrc.models.LogModel;
@@ -48,5 +49,36 @@ public class ApplicationController {
 
 		a.getServers().add(s);
 		
+	}
+
+
+
+	
+	/**
+	 * @author Anthony Scheeres
+	 * @return 
+	 */	
+	public ApplicationModel createNewApplicationModel(String name) {
+		ApplicationModel applicationModel= createApplication(
+				new ArrayList<UserModel>(), 
+				new ArrayList<LogModel>(),
+				new ArrayList<ServerModel>(), 
+				name, 
+				null
+				);
+	DataModel.setApplicationModel(applicationModel); 
+	return applicationModel;
+	}
+
+
+
+	
+	/**
+	 * @author Anthony Scheeres
+	 * @param currentUser 
+	 */
+	private ApplicationModel createApplication(List<UserModel> users, List<LogModel> logs, @NotNull List<ServerModel> servers,
+											 String name, UserModel currentUser){
+		return new  ApplicationModel(users, logs, servers, name, currentUser);
 	}	
 }
