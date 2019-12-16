@@ -1,4 +1,4 @@
-package nl.iipsen2server.dao;
+package nl.ipwrc.dao;
 
 import java.sql.Connection;
 
@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
-import nl.iipsen2server.models.DatabaseModel;
+import nl.ipwrc.models.DatabaseModel;
 
 public class PreparedStatmentDatabaseUtilities {
 

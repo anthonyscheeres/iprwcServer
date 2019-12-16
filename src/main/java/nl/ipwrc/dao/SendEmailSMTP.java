@@ -1,8 +1,10 @@
-package nl.iipsen2server.dao;
+package nl.ipwrc.dao;
 
 
 import com.sun.mail.smtp.SMTPTransport;
-import nl.iipsen2server.models.MyAuthenticator;
+
+import nl.ipwrc.models.MyAuthenticator;
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.Session;

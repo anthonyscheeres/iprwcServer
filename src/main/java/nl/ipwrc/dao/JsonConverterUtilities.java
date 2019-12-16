@@ -1,4 +1,4 @@
-package nl.iipsen2server.dao;
+package nl.ipwrc.dao;
 
 
 import java.io.IOException;
@@ -13,8 +13,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import nl.iipsen2server.models.ApplicationModel;
-import nl.iipsen2server.models.UserModel;
+import nl.ipwrc.models.ApplicationModel;
+import nl.ipwrc.models.UserModel;
 
 
 /**

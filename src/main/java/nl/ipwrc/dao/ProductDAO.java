@@ -1,15 +1,15 @@
-package nl.iipsen2server.dao;
+package nl.ipwrc.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import nl.iipsen2server.models.DataModel;
-import nl.iipsen2server.models.DatabaseModel;
-import nl.iipsen2server.models.ProductModel;
-import nl.iipsen2server.models.UserModel;
-import nl.iipsen2server.services.MailController;
-import nl.iipsen2server.services.UserController;
+import nl.ipwrc.models.DataModel;
+import nl.ipwrc.models.DatabaseModel;
+import nl.ipwrc.models.ProductModel;
+import nl.ipwrc.models.UserModel;
+import nl.ipwrc.services.MailController;
+import nl.ipwrc.services.UserController;
 
 public class ProductDAO {
 	private String tableName = "product";

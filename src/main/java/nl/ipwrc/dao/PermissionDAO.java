@@ -1,13 +1,13 @@
-package nl.iipsen2server.dao;
+package nl.ipwrc.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.iipsen2server.models.DataModel;
-import nl.iipsen2server.models.DatabaseModel;
-import nl.iipsen2server.models.Permission;
-import nl.iipsen2server.services.AuthenticationController;
-import nl.iipsen2server.models.AccountModel;
+import nl.ipwrc.models.AccountModel;
+import nl.ipwrc.models.DataModel;
+import nl.ipwrc.models.DatabaseModel;
+import nl.ipwrc.models.Permission;
+import nl.ipwrc.services.AuthenticationController;
 
 public class PermissionDAO {
 
