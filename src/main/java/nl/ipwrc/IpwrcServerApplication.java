@@ -71,7 +71,7 @@ class IpwrcServerApplication extends Application<Configuration> {
 	    
 	    }
 	    
-	    
+    
 	    
 	    public void intializeSettings() throws JsonProcessingException {
 	    	ApplicationController a = new ApplicationController();
@@ -79,14 +79,16 @@ class IpwrcServerApplication extends Application<Configuration> {
 	    	RestApiController r = new RestApiController();
 	    	DatabaseController f = new DatabaseController();
 	    	DirectoryController y = new DirectoryController();
-	    	ApplicationModel p = new ApplicationModel();  	
+	    	ApplicationModel p = new ApplicationModel();
+	    	String name = "WebshopServer";
+	    	p.setName(name);
 	    	ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
 	    	String url = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
-	    	String folder = "webshopServer";
+	    	String folder = name;
 	    	String file = "config.yml";
 	    	String path = url +"/" + folder +"/"+ file;
-	    	p.setName("WebshopApp");
 	        try {
+	        	
 	        	mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 	        	ServerModel server = mapper.readValue(new File(path), ServerModel.class);
 	            System.out.println(ReflectionToStringBuilder.toString(server,ToStringStyle.MULTI_LINE_STYLE));
@@ -94,19 +96,17 @@ class IpwrcServerApplication extends Application<Configuration> {
 	            i.add(server, p);
 	            System.out.print(server);
 	        } catch (Exception e1) {
-	        	 MailController m = new MailController();
-	        	ServerModel g = e.createNewServer();
-	        	r.createNewRest(8080, "localhost", g);
-	    		f.createNewDatabase("postgres","",5432,"postgres", "localhost", e.createNewServer()); 
-	    		
-	    		m.createNewMailModel("****@gmail.com", "******", g);
+	        	 MailController mailController = new MailController();
+	        	ServerModel serverModel = e.createNewServer();
+	        	r.createNewRest(8080, "localhost", serverModel);
+	        	//TODO Change database name to postgres2.0
+	    		f.createNewDatabase("ipsen3","ipsen3",5432,"ipsen3", "85.214.16.118", e.createNewServer());
+	    		mailController.createNewMailModel("****@gmail.com", "******", serverModel);
 	    		// Write object as YAML file
-	    		String yaml = mapper.writeValueAsString(g);
+	    		String yaml = mapper.writeValueAsString(serverModel);
+	    		System.out.println(yaml);
 	    		y.writeFileToDocuments(folder, file, yaml);
 	        }
-	    	
-	    		
-	    	  
 	    }
 	    
 	    
