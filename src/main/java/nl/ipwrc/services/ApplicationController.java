@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import nl.ipsen3server.models.OrganisationModel;
 import nl.ipwrc.models.ApplicationModel;
 import nl.ipwrc.models.DataModel;
 import nl.ipwrc.models.LogModel;
