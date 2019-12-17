@@ -19,7 +19,7 @@ public class UserController {
 	TokenController tokenController = new TokenController();
 	AuthenticationController authenticationController = new AuthenticationController();
 	private UserDAO userDAO = new UserDAO (); 
-	private String showUsers(String token) {
+	private String showUsers(String token) throws Exception {
 		long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
 	
 		if (!authenticationController.hasReadPermission(employeeId)) {

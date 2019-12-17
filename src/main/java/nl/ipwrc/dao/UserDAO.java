@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import nl.ipsen3server.dao.DatabaseUtilities;
+import nl.ipwrc.dao.DatabaseUtilities;
 import nl.ipwrc.models.*;
 import nl.ipwrc.services.AuthenticationController;
 import nl.ipwrc.services.MailController;
