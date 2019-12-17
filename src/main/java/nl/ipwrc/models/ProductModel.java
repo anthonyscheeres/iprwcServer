@@ -12,6 +12,12 @@ public class ProductModel {
 		this.img = img;
 		this.id = id;
 	}
+	
+	public ProductModel() {
+	
+	}
+	
+	
 	public String getName_p() {
 		return name_p;
 	}

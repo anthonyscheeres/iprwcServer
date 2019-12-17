@@ -31,7 +31,7 @@ public class ProductDAO {
      */
     public HashMap<String, List<String>> getProducts() throws Exception {
         DatabaseUtilities d = new DatabaseUtilities();
-        String query = String.format("select name, id from %s;", tableName);
+        String query = String.format("select name_p, id from %s;", tableName);
         return d.connectThisDatabase(databaseModel, query);
     }
 
