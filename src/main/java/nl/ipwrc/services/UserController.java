@@ -6,6 +6,8 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import nl.ipwrc.models.Response;
+import nl.ipwrc.dao.UserDAO;
 import nl.ipwrc.models.DataModel;
 import nl.ipwrc.models.UserModel;
 
@@ -14,8 +16,19 @@ import nl.ipwrc.models.UserModel;
  * @author Anthony Scheeres
  */
 public class UserController {
-
-
+	TokenController tokenController = new TokenController();
+	AuthenticationController authenticationController = new AuthenticationController();
+	private UserDAO userDAO = new UserDAO (); 
+	private String showUsers(String token) {
+		long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
+	
+		if (!authenticationController.hasReadPermission(employeeId)) {
+			System.out.println("fail");
+			return Response.fail.toString();
+		}
+		return userDAO.showUsers();
+	}
+	
     /**
      * @author Anthony Scheeres
      */

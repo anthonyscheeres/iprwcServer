@@ -21,7 +21,16 @@ import nl.ipwrc.models.UserModel;
 *
 */
 public class AuthenticationController {
-
+	 /**
+	  *
+	  * @author Anthony Scheeres 
+	  *
+	  */
+	public boolean hasReadPermission(long employeeId) {
+		AuthenticationDAO authenticationDAO = new AuthenticationDAO();
+		return authenticationDAO.hasEnumHandeler(employeeId, Permission.READ.toString());
+		
+	}
 	 /**
 	  *
 	  * @author Anthony Scheeres

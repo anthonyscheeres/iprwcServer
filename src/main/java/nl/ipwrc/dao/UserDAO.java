@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import nl.ipsen3server.dao.DatabaseUtilities;
 import nl.ipwrc.models.*;
 import nl.ipwrc.services.AuthenticationController;
 import nl.ipwrc.services.MailController;
@@ -174,6 +175,20 @@ public class UserDAO {
     }
 
 
+    /**
+     * @author Anthony Scheeres
+     */
+    public String showUsers() throws Exception {
+        String query = String.format(
+                "SELECT username, " +
+                        "permission, " +
+                        "has_write FROM %s"
+                        + " order by username;", tableName);
+        DatabaseUtilities d = new DatabaseUtilities();
+        String json = d.connectThisDatabase2(databaseModel, query);
+        System.out.println(json);
+        return json;
+    }
 
 /**
  *
