@@ -17,6 +17,7 @@ import nl.ipwrc.models.UserModel;
 import nl.ipwrc.services.AccountController;
 import nl.ipwrc.services.AuthenticationController;
 import nl.ipwrc.services.TokenController;
+import nl.ipwrc.services.UserController;
 
 
 
@@ -187,12 +188,13 @@ public class UserResource {
 	*
 	*/
 	@GET
-	@Path("/show")
+	@Path("/{token}/showAllUsers")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String showUsers() throws Exception {
-		UserDAO userDatabase = new UserDAO ();
-		return userDatabase.showUser();
+	public String showUsers(@PathParam("token") String token) throws Exception {
+		UserController userController = new UserController();
+		return userController.showUsers(token);
 	}
+	
 	
 	/**
 	*

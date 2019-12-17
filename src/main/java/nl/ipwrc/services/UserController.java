@@ -16,10 +16,13 @@ import nl.ipwrc.models.UserModel;
  * @author Anthony Scheeres
  */
 public class UserController {
-	TokenController tokenController = new TokenController();
-	AuthenticationController authenticationController = new AuthenticationController();
+	private TokenController tokenController = new TokenController();
+	private AuthenticationController authenticationController = new AuthenticationController();
 	private UserDAO userDAO = new UserDAO (); 
-	private String showUsers(String token) throws Exception {
+	
+	
+	
+	public String showUsers(String token) throws Exception {
 		long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
 	
 		if (!authenticationController.hasReadPermission(employeeId)) {
@@ -109,4 +112,6 @@ public class UserController {
         }
         return false;
     }
+
+	
 }
