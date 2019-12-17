@@ -180,8 +180,7 @@ public class UserDAO {
     public String showUsers() throws Exception {
         String query = String.format(
                 "SELECT username, " +
-                        "permission, " +
-                        "has_write FROM %s"
+                        "permission FROM %s"
                         + " order by username;", tableName);
         DatabaseUtilities d = new DatabaseUtilities();
         String json = d.connectThisDatabase2(databaseModel, query);
