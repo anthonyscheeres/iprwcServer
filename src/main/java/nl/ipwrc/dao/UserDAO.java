@@ -6,7 +6,6 @@ import java.util.List;
 
 import nl.ipwrc.dao.DatabaseUtilities;
 import nl.ipwrc.models.*;
-import nl.ipwrc.services.AuthenticationController;
 import nl.ipwrc.services.MailController;
 import nl.ipwrc.services.UserController;
 

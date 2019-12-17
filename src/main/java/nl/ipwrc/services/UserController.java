@@ -101,17 +101,12 @@ public class UserController {
      * 
      */
     public boolean checkIfUsernameExist(List<String> list, String username) {
-    	
         for (String name : list) {
             if (name.equals(username)) {
 
                 return true;
             }
-
-        //    System.out.println(name);
-
         }
         return false;
     }
-
 }
