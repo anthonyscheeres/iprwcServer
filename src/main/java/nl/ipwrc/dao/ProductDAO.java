@@ -54,6 +54,7 @@ public class ProductDAO {
 
 	public void changeImg(ProductModel product) {
 		String img = product.getImg();
+		System.out.println( img );
 		long id = product.getId();
 		String query = String.format("UPDATE %s\r\n" + 
 				"   img\r\n" + 

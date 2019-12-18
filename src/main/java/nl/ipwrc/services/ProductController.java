@@ -5,6 +5,7 @@ import java.util.List;
 
 import nl.ipwrc.dao.ProductDAO;
 import nl.ipwrc.models.ProductModel;
+import nl.ipwrc.models.Response;
 
 public class ProductController {
 	ProductDAO DAO= new ProductDAO();
@@ -50,15 +51,18 @@ public class ProductController {
 	/**
 	*
 	* @author Anthony Scheeres
+	 * @return 
 	 * @throws Exception 
 	* 
 	*/
-	public void handleChangeImgProduct(ProductModel u, String token) {
+	public String handleChangeImgProduct(ProductModel u, String token) {
 		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
 		if (!authenticationController.hasSuperPermission(employeeId)) {
-			return;
+			System.out.println("fail");
+			return Response.fail.toString();
 		}
 		DAO.changeImg(u);
+		System.out.println("success");
+		return Response.success.toString();
 	}
-
 }
