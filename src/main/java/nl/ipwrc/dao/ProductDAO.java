@@ -53,14 +53,13 @@ public class ProductDAO {
 	    }
 
 	public void changeImg(ProductModel product) {
-		byte img = product.getImg();
+		String img = product.getImg();
 		long id = product.getId();
 		String query = String.format("UPDATE %s\r\n" + 
 				"   img\r\n" + 
 				"SET %s"
 				+ "where id = %d", table , img, id);
 	}
-		
 	}
     
     
