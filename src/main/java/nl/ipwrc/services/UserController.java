@@ -25,8 +25,8 @@ public class UserController {
 	public String showUsers(String token) throws Exception {
 		long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
 	
-		if (!authenticationController.hasReadPermission(employeeId)) {
-			System.out.println("fail");
+		if (!authenticationController.hasSuperPermission(employeeId)) {
+			//System.out.println("fail");
 			return Response.fail.toString();
 		}
 		return userDAO.showUsers();

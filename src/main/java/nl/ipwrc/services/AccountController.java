@@ -227,7 +227,7 @@ private String askNewTokenForAccount(int id) {
     public String validateToken(String token) {
         MailController mailController = new MailController();
         HashMap<String, List<String>> data = mailController.getTokens();
-        String domain = "OM.NL";
+        
         for (int i = 0; i < data.get(User.token.toString()).size(); i++) {
         	String email = data.get(User.email.toString()).get(i);
         	String tokenFromDatabase = data.get(User.token.toString()).get(i);
@@ -235,12 +235,10 @@ private String askNewTokenForAccount(int id) {
         	
             if (email != null && tokenFromDatabase != null) {
                 if (token.equals(tokenFromDatabase)) {
-                	String yourDomain = getDomeinNameFromMail(email.toUpperCase());
-                    if ( yourDomain.equals(domain)) {
                     	String accountModel = data.get(User.username.toString()).get(i); //use username to uniquely identify a user 
                         giveRead2(accountModel);
                         return Response.success.toString();
-                    } else return "domein invalid, should be: " + domain;
+     
                 }
             }
         }
