@@ -30,9 +30,9 @@ public class ProductDAO {
      * @author Anthony Scheeres
      */
     public HashMap<String, List<String>> getProducts() throws Exception {
-        DatabaseUtilities d = new DatabaseUtilities();
+        DatabaseUtilities databaseUtilites = new DatabaseUtilities();
         String query = String.format("select name_p, id from %s;", tableName);
-        return d.connectThisDatabase(databaseModel, query);
+        return databaseUtilites.connectThisDatabase(databaseModel, query);
     }
 
     
@@ -52,14 +52,18 @@ public class ProductDAO {
 	        pUtilites.connectDatabaseJson(databaseModel, query2, variables, false);
 	    }
 
-	public void changeImg(ProductModel product) {
+	public void changeImg(ProductModel product) throws Exception {
+	     DatabaseUtilities d = new DatabaseUtilities();
 		String img = product.getImg();
 		System.out.println( img );
 		long id = product.getId();
 		String query = String.format("UPDATE %s\r\n" + 
 				"   img\r\n" + 
-				"SET %s"
+				"SET '%s'"
 				+ "where id = %d", table , img, id);
+		
+		   d.connectThisDatabase(databaseModel, query);
+		
 	}
 	}
     

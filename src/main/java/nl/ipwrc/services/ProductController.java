@@ -55,7 +55,7 @@ public class ProductController {
 	 * @throws Exception 
 	* 
 	*/
-	public String handleChangeImgProduct(ProductModel u, String token) {
+	public String handleChangeImgProduct(ProductModel u, String token) throws Exception {
 		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
 		if (!authenticationController.hasSuperPermission(employeeId)) {
 			System.out.println("fail");
