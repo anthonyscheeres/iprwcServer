@@ -14,12 +14,12 @@ import nl.ipwrc.services.UserController;
 public class ProductDAO {
 	private String tableName = "product";
 	private DatabaseModel databaseModel = DataModel.getApplicationModel().getServers().get(0).getDatabase().get(0);
-	private String table = "product";
+
 	   /**
      * @author Anthony Scheeres
      */
     public String showProducts() throws Exception {
-        String query = String.format("select * from %s;", tableName);
+        String query = String.format("select * from %s order by name_p;", tableName);
         System.out.println(query);
         DatabaseUtilities d = new DatabaseUtilities();
         return d.connectThisDatabase2(databaseModel, query);
@@ -31,7 +31,7 @@ public class ProductDAO {
      */
     public HashMap<String, List<String>> getProducts() throws Exception {
         DatabaseUtilities databaseUtilites = new DatabaseUtilities();
-        String query = String.format("select name_p, id from %s;", tableName);
+        String query = String.format("select name_p, id from %s order by name_p;", tableName);
         return databaseUtilites.connectThisDatabase(databaseModel, query);
     }
 
@@ -57,12 +57,19 @@ public class ProductDAO {
 		String img = product.getImg();
 		System.out.println( img );
 		long id = product.getId();
-		String query = String.format("UPDATE %s\r\n" + 
-				"   img\r\n" + 
-				"SET '%s'"
-				+ "where id = %d", table , img, id);
+		String query2 = String.format(
+				"UPDATE %s "
+				+ "SET img = ? "
+				+ "where id = ?; "
+				, tableName);
 		
-		   d.connectThisDatabase(databaseModel, query);
+		
+		  PreparedStatmentDatabaseUtilities pUtilites = new PreparedStatmentDatabaseUtilities();
+		    List<String> variables = new ArrayList<>();
+	        variables.add(img);
+	        variables.add(Long.toString(id));
+		 pUtilites.connectDatabaseJson(databaseModel, query2, variables, false);
+		
 		
 	}
 	}

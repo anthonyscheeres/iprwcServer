@@ -61,10 +61,5 @@ public class ProductResource {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
+
 }
