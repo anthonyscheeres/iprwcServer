@@ -9,14 +9,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import nl.ipwrc.models.DatabaseModel;
+import nl.ipwrc.services.LoggerController;
 
 
 
 
 public class DatabaseUtilities {
 
+    private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
     /**
      *
      * @author Anthony Scheeres
@@ -42,7 +46,8 @@ public class DatabaseUtilities {
                 hashmap.put(singleArray.get(index), array.get(index));
             }
         } catch (SQLException e1) {
-            e1.printStackTrace();
+
+			  LOGGER.log(Level.SEVERE, "Exception occur", e1);
         }
         return hashmap;
     }
@@ -120,7 +125,7 @@ public class DatabaseUtilities {
         // the class path. Note that your application must manually load any JDBC drivers prior to version 4.0.
         //     Class.forName("org.postgresql.Driver"); 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            System.out.println("Java JDBC PostgreSQL: " + databaseName);
+           // System.out.println("Java JDBC PostgreSQL: " + databaseName);
 
             ResultSet resultSet = this.enterQuery(connection, query);
             JsonConverterUtilities jsonConverer = new JsonConverterUtilities();
@@ -128,8 +133,9 @@ public class DatabaseUtilities {
             connection.close();
             result = json;
         } catch (SQLException err) {
-            System.out.println("Connection failure.");
-            err.printStackTrace();
+          //  System.out.println("Connection failure.");
+
+			  LOGGER.log(Level.SEVERE, "Exception occur", err);
         }
         return result;
     }
@@ -164,8 +170,9 @@ public class DatabaseUtilities {
             connection.close();
             result =  hashmap;
         } catch (SQLException err) {
-            System.out.println("Connection failure.");
-            err.printStackTrace();
+         //   System.out.println("Connection failure.");
+
+			  LOGGER.log(Level.SEVERE, "Exception occur", e);
         }
         return result;
     }
@@ -210,7 +217,7 @@ public class DatabaseUtilities {
             result = statement.executeQuery(query);
         } catch (SQLException e) {
 
-            e.printStackTrace();
+			  LOGGER.log(Level.SEVERE, "Exception occur", e);
         }
             return result;
         
@@ -231,7 +238,7 @@ public class DatabaseUtilities {
             statement = connection.createStatement();
             return statement.executeUpdate(query);
         } catch (SQLException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
             return 0;
         }
     }

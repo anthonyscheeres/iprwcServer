@@ -2,6 +2,8 @@ package nl.ipwrc.services;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator;
 
@@ -17,7 +19,8 @@ import nl.ipwrc.models.ServerModel;
 public class MailController {
 	 private String tableName = "app_user";
 	 private int tokenLength = 20;
-	 
+
+	    private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
 	 
 	 private MailModel createMailModel(String username, String password) {
 		 return new MailModel(username, password);
@@ -29,8 +32,8 @@ public class MailController {
      		try {
 					sendMail(text, mailFrom, mailTo, subject);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+
+					  LOGGER.log(Level.SEVERE, "Exception occur", e);
 				}
      	}).start();
 	 }

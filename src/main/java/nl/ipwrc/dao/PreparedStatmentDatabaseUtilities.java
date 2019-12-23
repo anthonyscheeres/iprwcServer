@@ -11,12 +11,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import nl.ipwrc.models.DatabaseModel;
+import nl.ipwrc.services.LoggerController;
 
 public class PreparedStatmentDatabaseUtilities {
 
-	
+
+    private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
 	
     /**
      *
@@ -98,7 +102,7 @@ public class PreparedStatmentDatabaseUtilities {
 
 
         try  {
-            System.out.println("Java JDBC PostgreSQL: " + databaseName);
+          //  System.out.println("Java JDBC PostgreSQL: " + databaseName);
             Connection connection = DriverManager.getConnection(url, username, password);
             PreparedStatement pstmt = connection.prepareStatement(query);
             int counter = 0;
@@ -181,8 +185,8 @@ public class PreparedStatmentDatabaseUtilities {
             connection.close();
             result = hashmap;
         } catch (SQLException err) {
-            System.out.println("Connection failure.");
-            err.printStackTrace();
+            //System.out.println("Connection failure.");
+            LOGGER.log(Level.SEVERE, "Exception occur", err);
         }
 
         return result;

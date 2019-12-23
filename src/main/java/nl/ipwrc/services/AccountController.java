@@ -3,6 +3,8 @@ package nl.ipwrc.services;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.security.sasl.AuthenticationException;
 
@@ -31,6 +33,7 @@ private UserDAO userDatabase = new UserDAO();
 private PermissionDAO permissionDatabase = new PermissionDAO();
 
 
+private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
 /**
 *
 * @author Anthony Scheeres
@@ -112,6 +115,7 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
             return fail;
         } catch (Exception e2) {
 
+			  LOGGER.log(Level.SEVERE, "Exception occur", e2);
         }
         return fail;
     }

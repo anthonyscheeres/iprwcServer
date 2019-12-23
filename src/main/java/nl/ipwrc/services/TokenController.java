@@ -2,6 +2,8 @@ package nl.ipwrc.services;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import nl.ipwrc.dao.DatabaseUtilities;
 import nl.ipwrc.dao.UserDAO;
@@ -10,7 +12,8 @@ import nl.ipwrc.models.DatabaseModel;
 import nl.ipwrc.models.Response;
 
 public class TokenController {
-	 
+
+    private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
 		/**
 		*
 		* @author Anthony Scheeres
@@ -72,7 +75,8 @@ public class TokenController {
 		   return findValideTokenInHashmap( hashmap, token);
 		   }
 		   catch (Exception e) {
-		   e.printStackTrace();
+
+				  LOGGER.log(Level.SEVERE, "Exception occur", e);
 		  }
 		  return Response.fail.toString();
 	 }

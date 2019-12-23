@@ -19,6 +19,7 @@ import nl.ipwrc.resources.UserResource;
 import nl.ipwrc.services.ApplicationController;
 import nl.ipwrc.services.DatabaseController;
 import nl.ipwrc.services.DirectoryController;
+import nl.ipwrc.services.LoggerController;
 import nl.ipwrc.services.MailController;
 import nl.ipwrc.services.RestApiController;
 import nl.ipwrc.services.ServerController;
@@ -31,7 +32,13 @@ import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.EnumSet;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Anthony Scheeres
@@ -82,41 +89,11 @@ class IpwrcServerApplication extends Application<Configuration> {
 	    
 	    
 	    public void intializeSettings() throws JsonProcessingException {
-	    	ApplicationController a = new ApplicationController();
-	    	ServerController e =new ServerController();
-	    	RestApiController r = new RestApiController();
-	    	DatabaseController f = new DatabaseController();
-	    	DirectoryController y = new DirectoryController();
-	    	ApplicationModel p = a.createNewApplicationModel("webshop");
-	    	ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-	    	String url = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
-	    	String folder = "webshopServer";
-	    	String file = "config.yml";
-	    	String path = url +"/" + folder +"/"+ file;
-	        try {
-	        	
-	        	mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
-	        	ServerModel server = mapper.readValue(new File(path), ServerModel.class);
-	            System.out.println(ReflectionToStringBuilder.toString(server,ToStringStyle.MULTI_LINE_STYLE));
-	            ApplicationController i = new ApplicationController();
-	            i.add(server, p);
-	            System.out.print(server);
-	        } catch (Exception e1) {
-	        	 MailController mailController = new MailController();
-	        	ServerModel serverModel = e.createNewServer();
-	        	r.createNewRest(8080, "localhost", serverModel);
-	        	//TODO Change database name to postgres2.0
-	    		f.createNewDatabase("ipsen3","ipsen3",5432,"ipsen3", "85.214.16.118", e.createNewServer());
-	    		mailController.createNewMailModel("****@gmail.com", "******", serverModel);
-	    		// Write object as YAML file
-	    		String yaml = mapper.writeValueAsString(serverModel);
-	    		System.out.println(yaml);
-	    		y.writeFileToDocuments(folder, file, yaml);
-	        }
+	    DirectoryController directoryController  = new DirectoryController ();
+	    LoggerController  loggerController  = new  LoggerController ();
+	    directoryController.intializeConfigSettings();
+	    loggerController.logger();
 	    }
     
-	  
-	    
-	 
 	}
 

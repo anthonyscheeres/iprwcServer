@@ -3,9 +3,12 @@ package nl.ipwrc.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import nl.ipwrc.dao.DatabaseUtilities;
 import nl.ipwrc.models.*;
+import nl.ipwrc.services.LoggerController;
 import nl.ipwrc.services.MailController;
 import nl.ipwrc.services.UserController;
 
@@ -14,8 +17,7 @@ public class UserDAO {
 
 	private String tableName = "app_user";
 	private DatabaseModel databaseModel = DataModel.getApplicationModel().getServers().get(0).getDatabase().get(0);
-
-
+    private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
 	/**
 	 * @author Anthony Scheeres
 	 * <p>
@@ -53,6 +55,7 @@ public class UserDAO {
                 return false;
             }
         } catch (Exception e) {
+        	  LOGGER.log(Level.SEVERE, "Exception occur", e);
         }
         return true;
     }
@@ -72,8 +75,7 @@ public class UserDAO {
             databaseUtilities.connectThisDatabase2(databaseModel, query);
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        	  LOGGER.log(Level.SEVERE, "Exception occur", e);
         }
     }
 
@@ -103,7 +105,7 @@ public class UserDAO {
         try {
             result = f.connectDatabaseJson(databaseModel, query, array, false);
         } catch (Exception e) {
-            e.printStackTrace();
+        	  LOGGER.log(Level.SEVERE, "Exception occur", e);
         }
         return result;
     }
@@ -169,7 +171,7 @@ public class UserDAO {
         try {
             f.connectDatabaseJson(databaseModel, query, f1, false);
         } catch (Exception e) {
-
+        	  LOGGER.log(Level.SEVERE, "Exception occur", e);
         }
     }
 
@@ -209,6 +211,7 @@ public void removeUserMode(AccountModel u) {
 	try {
 		preparedStatmentDatabaseUtilities.connectDatabaseJson(databaseModel, deletequery, f1, false);
 	} catch (Exception e) {
+		  LOGGER.log(Level.SEVERE, "Exception occur", e);
 	}
 }
 }

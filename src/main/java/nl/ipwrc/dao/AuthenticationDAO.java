@@ -2,6 +2,7 @@ package  nl.ipwrc.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import nl.ipwrc.models.AccountModel;
 import nl.ipwrc.models.DataModel;
@@ -9,14 +10,16 @@ import nl.ipwrc.models.DatabaseModel;
 import nl.ipwrc.models.Permission;
 import nl.ipwrc.models.Response;
 import nl.ipwrc.services.AuthenticationController;
+import nl.ipwrc.services.LoggerController;
 
+import java.util.logging.Logger;
 public class AuthenticationDAO {
 
 	 String tableName = "app_user";
 	 private DatabaseModel databaseModel = DataModel.getApplicationModel().getServers().get(0).getDatabase().get(0);
 	 AuthenticationController autenticationController = new AuthenticationController();
 	 private UserDAO userDatabase = new UserDAO();
-
+	    private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
 
 
 
@@ -35,6 +38,7 @@ public class AuthenticationDAO {
 			givePermission(u, permission);
 			 return true;
 		} catch (Exception e) {
+			  LOGGER.log(Level.SEVERE, "Exception occur", e);
 		}
 	 }return false;
 	 }
@@ -55,7 +59,7 @@ public class AuthenticationDAO {
 			  givePermission(u, permission);
 			 return true;
 		} catch (Exception e) {
-		
+			  LOGGER.log(Level.SEVERE, "Exception occur", e);
 		}
 		  
 	 }return false;
@@ -75,6 +79,7 @@ public class AuthenticationDAO {
 		 		  givePermission(accountModel, permission);
 		 		 return true;
 		 	} catch (Exception e) {
+		 		  LOGGER.log(Level.SEVERE, "Exception occur", e);
 		 	}
 		 	  
 		  }return false;

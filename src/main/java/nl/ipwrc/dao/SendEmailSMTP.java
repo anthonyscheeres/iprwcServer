@@ -4,6 +4,7 @@ package nl.ipwrc.dao;
 import com.sun.mail.smtp.SMTPTransport;
 
 import nl.ipwrc.models.MyAuthenticator;
+import nl.ipwrc.services.LoggerController;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -13,10 +14,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * @author Anthony Scheeres
  */
 public class SendEmailSMTP {
+    private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
 	/**
 	 * @author Anthony Scheeres
 	 */
@@ -43,7 +47,9 @@ public class SendEmailSMTP {
 	        message.setText(text, encoding);
 	        Transport.send(message);
 	    } catch (Exception e) {
-	        throw new Exception("sendMail()->Exception", e);
+
+			  LOGGER.log(Level.SEVERE, "Exception occur", e);
+
 	    }
 	}
 }
