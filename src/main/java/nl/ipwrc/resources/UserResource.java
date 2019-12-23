@@ -131,11 +131,11 @@ public class UserResource {
 	
 	
 	
+
 	/**
 	*
-	* @author Jesse Poleij
+	* @author Anthony Scheeres
 	* 
-	*
 	*/
 	@DELETE
 	@Path("/{token}/remove")
