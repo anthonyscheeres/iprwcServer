@@ -200,7 +200,7 @@ public void removeUserMode(AccountModel u) {
 	PreparedStatmentDatabaseUtilities preparedStatmentDatabaseUtilities = new PreparedStatmentDatabaseUtilities();
 	String deletequery =
 			"DELETE FROM app_user\r\n" +
-					"WHERE username = ?;";
+					"WHERE username = '?';";
 	String logquery =
 			"DELETE FROM logs\r\n" +
 					"WHERE id = ?;";

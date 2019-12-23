@@ -34,13 +34,7 @@ private PermissionDAO permissionDatabase = new PermissionDAO();
 
 
 private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
-/**
-*
-* @author Anthony Scheeres
 
-*
-*
-*/
 
 /**
  * @return

@@ -27,7 +27,7 @@ public class PermissionDAO {
 	  *
 	  */
 	 public boolean giveRead2(String username) {
-		  String query2 = "select permission from app_user where username=?;";
+		  String query2 = "select permission from app_user where username='?';";
 		  Enum permission = Permission.READ;
 	 if (!userDatabase.hasPermission(permission.toString(), username, query2)) {
 		  try {
@@ -93,7 +93,7 @@ public class PermissionDAO {
 	 private void givePermission(String u, Enum e) throws Exception {
 		  PreparedStatmentDatabaseUtilities databaseController = new PreparedStatmentDatabaseUtilities();
 		  List < String > list = new ArrayList < String > ();
-		  String query2 = String.format("UPDATE app_user SET permission = array_append(permission,'%s') WHERE username = ?;", e);
+		  String query2 = String.format("UPDATE app_user SET permission = array_append(permission,'%s') WHERE username = '?';", e);
 		  list.add(u);
 		  databaseController.connectDatabaseJson(databaseModel, query2, list, false);
 	 }

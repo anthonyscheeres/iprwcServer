@@ -13,7 +13,7 @@ public class LoggerController {
 	 private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
 	  	String url = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
     	String folder = "webshopServer";
-    	String file = "errors.log";
+    	String file = "errors";
     	String path = url +"/" + folder +"/"+ file;
     	
     	
