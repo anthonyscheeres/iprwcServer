@@ -257,9 +257,12 @@ private String askNewTokenForAccount(int id) {
     }
     
 
-    /**
-     * @author Jesse Poleij, Anthony Scheeres
-     */
+
+	/**
+	*
+	* @author Anthony Scheeres
+	* 
+	*/
     public void handleRemoveUser(AccountModel u, String token) {
         userDatabase.removeUserMode(u);
     }

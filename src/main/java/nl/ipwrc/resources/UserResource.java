@@ -3,6 +3,7 @@ package nl.ipwrc.resources;
 
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -136,7 +137,7 @@ public class UserResource {
 	* 
 	*
 	*/
-	@POST
+	@DELETE
 	@Path("/{token}/remove")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void removeUserModel(@PathParam("token") String employeeId, AccountModel u)  {
