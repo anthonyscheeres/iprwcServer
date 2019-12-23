@@ -1,8 +1,8 @@
 package nl.ipwrc.models;
 
-import java.sql.Time;
+
 import java.sql.Timestamp;
-import java.util.Date;
+
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;

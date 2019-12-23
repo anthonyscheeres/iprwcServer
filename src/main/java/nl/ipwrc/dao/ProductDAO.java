@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import nl.ipsen3server.dao.PreparedStatmentDatabaseUtilities;
 import nl.ipwrc.models.DataModel;
 import nl.ipwrc.models.DatabaseModel;
 import nl.ipwrc.models.ProductModel;
