@@ -63,7 +63,7 @@ public class DatabaseUtilities {
      *
      */
     //use a database object to connect to database and perform a query
-    public HashMap < String, List < String >> connectThisDatabase(DatabaseModel databaseModel, String query) throws Exception {
+    public HashMap < String, List < String >> connectThisDatabaseHashMap(DatabaseModel databaseModel, String query) throws Exception {
 
         HashMap < String, List < String >> hashmap = connectToDatabase2(
             databaseModel.getUsername(),
@@ -86,15 +86,16 @@ public class DatabaseUtilities {
      *
      */
     //use a database object to connect to database and perform a query
-    public String connectThisDatabase2(DatabaseModel databaseModel, String query) throws Exception {
+    public String connectThisDatabaseJson(DatabaseModel databaseModel, String query, boolean isUpdate) throws Exception {
 
-        return connectToDatabase(
+        return connectToDatabaseReturnJson(
         		databaseModel.getUsername(),
         		databaseModel.getPassword(),
         		databaseModel.getPortNumber(),
         		databaseModel.getDatabaseName(),
         		databaseModel.getHostName(),
-        		query
+        		query,
+        		isUpdate
         		);
     }
 
@@ -107,18 +108,20 @@ public class DatabaseUtilities {
     /**
      *
      * @author Anthony Scheeres
+     * @param isUpdate 
      * @throws Exception 
      *
      */
-    private String connectToDatabase(
+    private String connectToDatabaseReturnJson(
             String username,
             String password,
             int portNumber,
             String databaseName,
             String hostName,
-            String query
+            String query, boolean isUpdate
     ) throws Exception {
     	  String result = null;
+    	  String json = null;
         String url = createUrl(portNumber, databaseName, hostName);
         HashMap < String, List < String >> hashmap = new HashMap < String, List < String >> ();
         // When this class first attempts to establish a connection, it automatically loads any JDBC 4.0 drivers found within 
@@ -126,10 +129,16 @@ public class DatabaseUtilities {
         //     Class.forName("org.postgresql.Driver"); 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
            // System.out.println("Java JDBC PostgreSQL: " + databaseName);
-
+        	 if(isUpdate){
+        		 int resultSet = this.enterUpdate(connection, query);
+                 
+                 result = "Update was succecfull";
+             }else{
+                 
             ResultSet resultSet = this.enterQuery(connection, query);
             JsonConverterUtilities jsonConverer = new JsonConverterUtilities();
-            String json = jsonConverer.convertToJSON(resultSet).toString();
+            json = jsonConverer.convertToJSON(resultSet).toString();
+             }
             connection.close();
             result = json;
         } catch (SQLException err) {
@@ -232,14 +241,15 @@ public class DatabaseUtilities {
      *
      */
     // this methode can be used to insert an query
-    public int enterUpdate(Connection connection, String query) {
+    public void enterUpdate(Connection connection, String query) {
         Statement statement;
         try {
             statement = connection.createStatement();
-            return statement.executeUpdate(query);
+             statement.executeUpdate(query);
         } catch (SQLException e) {
-           // e.printStackTrace();
-            return 0;
+
+			  LOGGER.log(Level.SEVERE, "Exception occur", e);
+           
         }
     }
 

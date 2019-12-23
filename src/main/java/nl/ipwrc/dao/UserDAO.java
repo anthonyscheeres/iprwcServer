@@ -72,7 +72,7 @@ public class UserDAO {
         System.out.println(query);
         DatabaseUtilities databaseUtilities = new DatabaseUtilities();
         try {
-            databaseUtilities.connectThisDatabase2(databaseModel, query);
+            databaseUtilities.connectThisDatabaseJson(databaseModel, query, true);
 
         } catch (Exception e) {
         	  LOGGER.log(Level.SEVERE, "Exception occur", e);
@@ -86,8 +86,8 @@ public class UserDAO {
     public String showUser() throws Exception {
         String query = String.format("select username,permission from %s order by username;", tableName);
         System.out.println(query);
-        DatabaseUtilities d = new DatabaseUtilities();
-        return d.connectThisDatabase2(databaseModel, query);
+        DatabaseUtilities datebaseUtilities = new DatabaseUtilities();
+        return datebaseUtilities.connectThisDatabaseJson(databaseModel, query);
     }
 
 
