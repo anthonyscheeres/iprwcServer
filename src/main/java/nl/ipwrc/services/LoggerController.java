@@ -24,7 +24,7 @@ public class LoggerController {
         try{
             //Creating consoleHandler and fileHandler
             consoleHandler = new ConsoleHandler();
-            fileHandler  = new FileHandler("./path");
+            fileHandler  = new FileHandler(path);
              
             //Assigning handlers to LOGGER object
             LOGGER.addHandler(consoleHandler);
@@ -41,10 +41,11 @@ public class LoggerController {
             LOGGER.removeHandler(consoleHandler);
              
            // LOGGER.log(Level.FINE, "Finer logged");
+            
         }catch(IOException exception){
             LOGGER.log(Level.SEVERE, "Error occur in FileHandler.", exception);
         }
-         
+        fileHandler.close();
       //  LOGGER.finer("Finest example on LOGGER handler completed.");
          
     	

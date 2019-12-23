@@ -1,6 +1,7 @@
 package nl.ipwrc.resources;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -60,6 +61,18 @@ public class ProductResource {
 		 productController.handleChangeImgProduct(u, token);
 	}
 	
-	
+	/**
+	*
+	* @author Anthony Scheeres
+	 * @return 
+	 * @throws Exception 
+	* 
+	*/
+	@DELETE
+	@Path("/{token}/remove")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String removeProductModelFromDatabase(ProductModel u, @PathParam("token") String token) throws Exception  {
+		 return productController.handleRemoveProduct(u, token);
+	}
 
 }

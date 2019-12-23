@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import nl.ipsen3server.dao.PreparedStatmentDatabaseUtilities;
 import nl.ipwrc.models.DataModel;
 import nl.ipwrc.models.DatabaseModel;
 import nl.ipwrc.models.ProductModel;
@@ -25,7 +26,18 @@ public class ProductDAO {
         return d.connectThisDatabaseJson(databaseModel, query, false);
     }
 
-    
+    public void removeProduct(ProductModel p) {
+        PreparedStatmentDatabaseUtilities preparedStatmentDatabaseUtilities = new PreparedStatmentDatabaseUtilities();
+        String deletequery =
+                String.format("DELETE FROM %s\r\n" +
+                        "WHERE id = ?;", tableName);
+        List<String> usernameArray = new ArrayList<String>();
+        usernameArray.add(String.format("%s",p.getId()));
+        try {
+            preparedStatmentDatabaseUtilities.connectDatabaseJson(databaseModel, deletequery, usernameArray, false);
+        } catch (Exception e) {
+        }
+    }
     /**
      * @author Anthony Scheeres
      */

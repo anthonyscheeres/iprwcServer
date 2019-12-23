@@ -65,4 +65,13 @@ public class ProductController {
 	
 		return Response.success.toString();
 	}
+	public String handleRemoveProduct(ProductModel productModel, String token) {
+		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
+		if (!authenticationController.hasSuperPermission(employeeId)) {
+			
+			return Response.fail.toString();
+		}
+		DAO.removeProduct(productModel);
+		return Response.success.toString();
+	}
 }
