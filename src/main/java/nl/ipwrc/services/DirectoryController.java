@@ -33,7 +33,7 @@ public class DirectoryController {
 */
 	  public String writeFileToDocuments(String folder, String fileName, String value){
 	    	String url = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
-	    	System.out.println(url);
+	  
 	    	  String result = null;
 	    	try {
 				result = writeFile(url, folder, fileName, value);
@@ -62,7 +62,7 @@ public class DirectoryController {
 	        	
 	        	mapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
 	        	ServerModel server = mapper.readValue(new File(path), ServerModel.class);
-	            System.out.println(ReflectionToStringBuilder.toString(server,ToStringStyle.MULTI_LINE_STYLE));
+	            ReflectionToStringBuilder.toString(server,ToStringStyle.MULTI_LINE_STYLE);
 	            ApplicationController i = new ApplicationController();
 	            i.add(server, p);
 	            System.out.print(server);
@@ -75,7 +75,7 @@ public class DirectoryController {
 	    		mailController.createNewMailModel("****@gmail.com", "******", serverModel);
 	    		// Write object as YAML file
 	    		String yaml = mapper.writeValueAsString(serverModel);
-	    		System.out.println(yaml);
+	  
 	    		y.writeFileToDocuments(folder, file, yaml);
 	        }
 	    }
@@ -90,13 +90,13 @@ private String writeFile(String url, String folder, String fileName, String valu
 	    	String path = null;
 	    	if (!file.exists()) {
 	    	    if (file.mkdir()) {
-	    	        System.out.println("Directory created!");
+	    	 
 	    	    } else {
-	    	        System.out.println("Failed to create directory");
+	    	
 	    	    }
 	    	}
 	    	path = url +"/"+ folder+ "/" + fileName;
-	    	System.out.println(path);
+	  
 	    	File files = new File(path);
 	    	if(!files.exists()){
 	    		files.createNewFile();
@@ -104,8 +104,6 @@ private String writeFile(String url, String folder, String fileName, String valu
     	        BufferedWriter bw = new BufferedWriter(fw);
     	        bw.write(value);
     	        bw.close();
-	    		}else{
-	    		  System.out.println("File already exists");
 	    		}
 	    		
 	

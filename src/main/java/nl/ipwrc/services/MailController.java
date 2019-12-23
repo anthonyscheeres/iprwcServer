@@ -66,7 +66,7 @@ public class MailController {
 		  HashMap<String, List<String>> result = null;
 		  try {
 			  DatabaseModel databaseModel = DataModel.getApplicationModel().getServers().get(0).getDatabase().get(0);
-		   result = databaseUtilites.connectThisDatabase(databaseModel, query);
+		   result = databaseUtilites.connectThisDatabaseHashMap(databaseModel, query);
 		  } catch (Exception e2) {
 		  }return result;
 	 }

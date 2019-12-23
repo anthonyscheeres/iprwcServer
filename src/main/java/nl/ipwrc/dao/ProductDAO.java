@@ -20,9 +20,9 @@ public class ProductDAO {
      */
     public String showProducts() throws Exception {
         String query = String.format("select * from %s order by name_p;", tableName);
-        System.out.println(query);
+        
         DatabaseUtilities d = new DatabaseUtilities();
-        return d.connectThisDatabase2(databaseModel, query);
+        return d.connectThisDatabaseJson(databaseModel, query, false);
     }
 
     
@@ -32,7 +32,7 @@ public class ProductDAO {
     public HashMap<String, List<String>> getProducts() throws Exception {
         DatabaseUtilities databaseUtilites = new DatabaseUtilities();
         String query = String.format("select name_p, id from %s order by name_p;", tableName);
-        return databaseUtilites.connectThisDatabase(databaseModel, query);
+        return databaseUtilites.connectThisDatabaseHashMap(databaseModel, query);
     }
 
     
@@ -55,7 +55,7 @@ public class ProductDAO {
 	public void changeImg(ProductModel product) throws Exception {
 	     DatabaseUtilities d = new DatabaseUtilities();
 		String img = product.getImg();
-		System.out.println( img );
+	
 		long id = product.getId();
 		String query2 = String.format(
 				"UPDATE %s "

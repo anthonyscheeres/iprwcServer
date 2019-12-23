@@ -58,11 +58,11 @@ public class ProductController {
 	public String handleChangeImgProduct(ProductModel u, String token) throws Exception {
 		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
 		if (!authenticationController.hasSuperPermission(employeeId)) {
-			System.out.println("fail");
+	
 			return Response.fail.toString();
 		}
 		DAO.changeImg(u);
-		System.out.println("success");
+	
 		return Response.success.toString();
 	}
 }

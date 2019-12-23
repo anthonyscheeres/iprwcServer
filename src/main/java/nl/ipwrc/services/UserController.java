@@ -26,7 +26,7 @@ public class UserController {
 		long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
 	
 		if (!authenticationController.hasSuperPermission(employeeId)) {
-			//System.out.println("fail");
+			//"fail");
 			return Response.fail.toString();
 		}
 		return userDAO.showUsers();

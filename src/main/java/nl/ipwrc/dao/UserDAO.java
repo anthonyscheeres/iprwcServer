@@ -26,7 +26,7 @@ public class UserDAO {
 	public HashMap<String, List<String>> getTokens() throws Exception {
 		DatabaseUtilities databaseUtilities = new DatabaseUtilities();
 		String query = String.format("select user_id, token from %s order by user_id;", tableName);
-		return databaseUtilities.connectThisDatabase(databaseModel, query);
+		return databaseUtilities.connectThisDatabaseHashMap(databaseModel, query);
 	}
 	/**
 	 * @author Anthony Scheeres
@@ -69,7 +69,7 @@ public class UserDAO {
                 + "UPDATE %s "
                 + "SET token = '%s' "
                 + "WHERE user_id = %d;", tableName, token, id);
-        System.out.println(query);
+        
         DatabaseUtilities databaseUtilities = new DatabaseUtilities();
         try {
             databaseUtilities.connectThisDatabaseJson(databaseModel, query, true);
@@ -85,9 +85,9 @@ public class UserDAO {
      */
     public String showUser() throws Exception {
         String query = String.format("select username,permission from %s order by username;", tableName);
-        System.out.println(query);
+      
         DatabaseUtilities datebaseUtilities = new DatabaseUtilities();
-        return datebaseUtilities.connectThisDatabaseJson(databaseModel, query);
+        return datebaseUtilities.connectThisDatabaseJson(databaseModel, query, false);
     }
 
 
@@ -117,7 +117,7 @@ public class UserDAO {
     public HashMap<String, List<String>> getUserInfo() throws Exception {
         DatabaseUtilities d = new DatabaseUtilities();
         String query = String.format("select username, password, user_id, token, permission from %s order by user_id;", tableName);
-        return d.connectThisDatabase(databaseModel, query);
+        return d.connectThisDatabaseHashMap(databaseModel, query);
 
     }
 
@@ -128,7 +128,7 @@ public class UserDAO {
     public HashMap<String, List<String>> getUsers() throws Exception {
         DatabaseUtilities d = new DatabaseUtilities();
         String query = String.format("select username, user_id from %s order by user_id;", tableName);
-        return d.connectThisDatabase(databaseModel, query);
+        return d.connectThisDatabaseHashMap(databaseModel, query);
     }
 
 
@@ -185,8 +185,8 @@ public class UserDAO {
                         "permission FROM %s"
                         + " order by username;", tableName);
         DatabaseUtilities d = new DatabaseUtilities();
-        String json = d.connectThisDatabase2(databaseModel, query);
-        System.out.println(json);
+        String json = d.connectThisDatabaseJson(databaseModel, query, false);
+        
         return json;
     }
 

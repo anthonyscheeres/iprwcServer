@@ -128,9 +128,9 @@ public class DatabaseUtilities {
         // the class path. Note that your application must manually load any JDBC drivers prior to version 4.0.
         //     Class.forName("org.postgresql.Driver"); 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
-           // System.out.println("Java JDBC PostgreSQL: " + databaseName);
+           // "Java JDBC PostgreSQL: " + databaseName);
         	 if(isUpdate){
-        		 int resultSet = this.enterUpdate(connection, query);
+        		 this.enterUpdate(connection, query);
                  
                  result = "Update was succecfull";
              }else{
@@ -142,7 +142,7 @@ public class DatabaseUtilities {
             connection.close();
             result = json;
         } catch (SQLException err) {
-          //  System.out.println("Connection failure.");
+          //  "Connection failure.");
 
 			  LOGGER.log(Level.SEVERE, "Exception occur", err);
         }
@@ -164,22 +164,31 @@ public class DatabaseUtilities {
             int portNumber,
             String databaseName,
             String hostName,
-            String query
+            String query,
+            boolean isUpdate
     ) throws Exception {
     	  HashMap<String, List<String>> result = null;
         String url = createUrl(portNumber, databaseName, hostName);
+        HashMap<String, List<String>> hashmap=null;
         HashMap < String, List < String >> e = new HashMap < String, List < String >> ();
         // When this class first attempts to establish a connection, it automatically loads any JDBC 4.0 drivers found within 
         // the class path. Note that your application must manually load any JDBC drivers prior to version 4.0.
         //     Class.forName("org.postgresql.Driver"); 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            System.out.println("Java JDBC PostgreSQL: " + databaseName);
+       //     "Java JDBC PostgreSQL: " + databaseName);
+       	 if(isUpdate){
+    		 this.enterUpdate(connection, query);
+             
+             result = null;
+         }else{
             ResultSet resultSet = this.enterQuery(connection, query);
-            HashMap < String, List < String >> hashmap = getTableContents2(resultSet);
+            hashmap = getTableContents2(resultSet);
+         }
             connection.close();
-            result =  hashmap;
+       
+			result =  hashmap;
         } catch (SQLException err) {
-         //   System.out.println("Connection failure.");
+         //   "Connection failure.");
 
 			  LOGGER.log(Level.SEVERE, "Exception occur", e);
         }
@@ -219,7 +228,7 @@ public class DatabaseUtilities {
     private ResultSet enterQuery(Connection connection, String query) {
         Statement statement;
         ResultSet result = null;
-        System.out.println(query);
+    
 
         try {
             statement = connection.createStatement();

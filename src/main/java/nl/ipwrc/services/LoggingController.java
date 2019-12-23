@@ -32,9 +32,9 @@ public class LoggingController {
     public String showlogs(int id) throws Exception {
         String query = String.format("SELECT title FROM %s WHERE project_id = ", tableName);
         query += id + ";";
-        System.out.println(query);
+      
         DatabaseUtilities d = new DatabaseUtilities();
-        return d.connectThisDatabase2(databaseModel, query);
+        return d.connectThisDatabaseJson(databaseModel, query, false);
     }
 
 
@@ -50,14 +50,14 @@ public class LoggingController {
         PreparedStatmentDatabaseUtilities f = new PreparedStatmentDatabaseUtilities();
         HashMap < String, List < String >> e1;
         try {
-            e1 = d.connectThisDatabase(databaseModel, query);
+            e1 = d.connectThisDatabaseHashMap(databaseModel, query);
             long id = r.createUserId2(e1.get("id"));
             String query2 = "INSERT INTO logs(title, id, project_id) VALUES (" +
                 "?," +
                 "?," +
                 "?" +
                 ");";
-            System.out.println(query2);
+          
             try {
                 List <String> f2 = new ArrayList < > ();
                 f2.add(l.getTitle());
