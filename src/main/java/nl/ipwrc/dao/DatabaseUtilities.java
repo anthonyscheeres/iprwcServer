@@ -63,7 +63,7 @@ public class DatabaseUtilities {
      *
      */
     //use a database object to connect to database and perform a query
-    public HashMap < String, List < String >> connectThisDatabaseHashMap(DatabaseModel databaseModel, String query) throws Exception {
+    public HashMap < String, List < String >> connectThisDatabaseHashMap(DatabaseModel databaseModel, String query, boolean isUpdate) throws Exception {
 
         HashMap < String, List < String >> hashmap = connectToDatabase2(
             databaseModel.getUsername(),
@@ -71,7 +71,8 @@ public class DatabaseUtilities {
             databaseModel.getPortNumber(),
             databaseModel.getDatabaseName(),
             databaseModel.getHostName(),
-            query
+            query,
+            isUpdate
         );
         return hashmap;
     }

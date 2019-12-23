@@ -50,7 +50,7 @@ public class LoggingController {
         PreparedStatmentDatabaseUtilities f = new PreparedStatmentDatabaseUtilities();
         HashMap < String, List < String >> e1;
         try {
-            e1 = d.connectThisDatabaseHashMap(databaseModel, query);
+            e1 = d.connectThisDatabaseHashMap(databaseModel, query, true);
             long id = r.createUserId2(e1.get("id"));
             String query2 = "INSERT INTO logs(title, id, project_id) VALUES (" +
                 "?," +

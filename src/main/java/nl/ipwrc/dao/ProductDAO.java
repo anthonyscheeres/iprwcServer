@@ -32,7 +32,7 @@ public class ProductDAO {
     public HashMap<String, List<String>> getProducts() throws Exception {
         DatabaseUtilities databaseUtilites = new DatabaseUtilities();
         String query = String.format("select name_p, id from %s order by name_p;", tableName);
-        return databaseUtilites.connectThisDatabaseHashMap(databaseModel, query);
+        return databaseUtilites.connectThisDatabaseHashMap(databaseModel, query, false);
     }
 
     

@@ -26,7 +26,7 @@ public class UserDAO {
 	public HashMap<String, List<String>> getTokens() throws Exception {
 		DatabaseUtilities databaseUtilities = new DatabaseUtilities();
 		String query = String.format("select user_id, token from %s order by user_id;", tableName);
-		return databaseUtilities.connectThisDatabaseHashMap(databaseModel, query);
+		return databaseUtilities.connectThisDatabaseHashMap(databaseModel, query, false);
 	}
 	/**
 	 * @author Anthony Scheeres
@@ -117,7 +117,7 @@ public class UserDAO {
     public HashMap<String, List<String>> getUserInfo() throws Exception {
         DatabaseUtilities d = new DatabaseUtilities();
         String query = String.format("select username, password, user_id, token, permission from %s order by user_id;", tableName);
-        return d.connectThisDatabaseHashMap(databaseModel, query);
+        return d.connectThisDatabaseHashMap(databaseModel, query, false);
 
     }
 
@@ -128,7 +128,7 @@ public class UserDAO {
     public HashMap<String, List<String>> getUsers() throws Exception {
         DatabaseUtilities d = new DatabaseUtilities();
         String query = String.format("select username, user_id from %s order by user_id;", tableName);
-        return d.connectThisDatabaseHashMap(databaseModel, query);
+        return d.connectThisDatabaseHashMap(databaseModel, query, false);
     }
 
 
