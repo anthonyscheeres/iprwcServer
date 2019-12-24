@@ -171,7 +171,7 @@ public class UserDAO {
         try {
             f.connectDatabaseJson(databaseModel, query, f1, false);
         } catch (Exception e) {
-        	  LOGGER.log(Level.SEVERE, "Exception occur", e);
+        	  LOGGER.log(Level.SEVERE, "Exception occur "+ query, e);
         }
     }
 
@@ -200,10 +200,8 @@ public void removeUserMode(AccountModel u) {
 	PreparedStatmentDatabaseUtilities preparedStatmentDatabaseUtilities = new PreparedStatmentDatabaseUtilities();
 	String deletequery =
 			"DELETE FROM app_user\r\n" +
-					"WHERE username = '?';";
-	String logquery =
-			"DELETE FROM logs\r\n" +
-					"WHERE id = ?;";
+					"WHERE username = ?;";
+
 	List<String> f1 = new ArrayList<String>();
 	f1.add(u.getUsername());
 	List<String> f2 = new ArrayList<String>();

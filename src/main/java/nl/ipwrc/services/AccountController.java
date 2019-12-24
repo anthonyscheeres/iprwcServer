@@ -143,8 +143,15 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
   *
   */
  public String checkLogin(UserModel u) throws Exception {
-  HashMap < String, List < String >> hashmap;
+	
+	boolean isNumeric= PreparedStatmentDatabaseUtilities.isNumeric(u.getUsername());
   String response = Response.fail.toString();
+  if(isNumeric) {
+	  return response;
+  }
+  
+  
+  HashMap < String, List < String >> hashmap;
    hashmap = userDatabase.getUserInfo();
    List<String> users = hashmap.get(User.username.toString());
    String usernameFromClient = u.getUsername();

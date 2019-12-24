@@ -165,7 +165,7 @@ public boolean validate(String token, String permission) {
 }
 /**
 *
-* @author Jesse Poleij
+* @author Anthony Scheeres
 *
 *
 */
@@ -179,7 +179,7 @@ public boolean validate(String token, String permission) {
 	}
 	/**
 	 *
-	 * @author Jesse Poleij
+	 * @author Anthony Scheeres
 	 *
 	 *
 	 */

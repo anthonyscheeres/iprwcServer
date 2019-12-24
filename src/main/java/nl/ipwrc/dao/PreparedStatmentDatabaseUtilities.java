@@ -108,11 +108,14 @@ public class PreparedStatmentDatabaseUtilities {
             int counter = 0;
             for (int index = 0; index < values.size(); index++) {
                 counter = index + 1;
+                
+                if(!values.equals(null)) {
                 if (isNumeric(values.get(index))) {
                     pstmt.setInt(counter, Integer.parseInt(values.get(index)));
                 } else {
 
                     pstmt.setString(counter, values.get(index));
+                }
                 }
             }
 
@@ -204,7 +207,7 @@ public class PreparedStatmentDatabaseUtilities {
      * @throws Exception 
      *
      */
-    private static boolean isNumeric(String strNum) {
+    public static boolean isNumeric(String strNum) {
         try {
             double integer = Double.parseDouble(strNum);
         } catch (NumberFormatException | NullPointerException nfe) {
