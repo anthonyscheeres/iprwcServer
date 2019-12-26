@@ -51,7 +51,8 @@ public class ProductDAO {
     
 	public void addProduct(ProductModel product) throws Exception {
 	        PreparedStatmentDatabaseUtilities pUtilites = new PreparedStatmentDatabaseUtilities();
-	        String query2 = "INSERT INTO product(name_p, price) VALUES (" +
+	        String query2 = "INSERT INTO product(name_p, price, description) VALUES (" +
+	                "?," +
 	                "?," +
 	                "?" +
 	                ");";
@@ -59,7 +60,8 @@ public class ProductDAO {
 	        List<String> variables = new ArrayList<>();
 	        variables.add(product.getName_p());
 	        variables.add(Integer.toString(product.getPrice()));
-	   
+	        variables.add(product.getDescription());
+	 	   
 	        pUtilites.connectDatabaseJson(databaseModel, query2, variables, false);
 	    }
 
