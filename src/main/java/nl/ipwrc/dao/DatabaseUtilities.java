@@ -53,7 +53,18 @@ public class DatabaseUtilities {
     }
 
 
-
+    /**
+    *
+    * @author Anthony Scheeres
+    * @return 
+    * @throws Exception 
+    *
+    */
+   //use a database object to connect to database and perform a query
+   public HashMap < String, List < String >> connectThisDatabaseHashMap(DatabaseModel databaseModel, String query) throws Exception {
+	   boolean isUpdate = false;
+	   return  connectThisDatabaseHashMap(databaseModel, query, isUpdate);
+   }
 
     /**
      *
@@ -152,6 +163,33 @@ public class DatabaseUtilities {
 
 
 
+    /**
+     *
+     * @author Anthony Scheeres
+     * @throws Exception 
+     *
+     */
+    private HashMap < String, List < String >> connectToDatabase2(
+            String username,
+            String password,
+            int portNumber,
+            String databaseName,
+            String hostName,
+            String query
+           
+    ) throws Exception {
+    	 boolean isUpdate =  false;
+    	return connectToDatabase2(
+    	     username,
+    	          password,
+    	         portNumber,
+    	           databaseName,
+    	            hostName,
+    	            query,
+    	            isUpdate
+    	    );
+    	 
+    }
 
     /**
      *
