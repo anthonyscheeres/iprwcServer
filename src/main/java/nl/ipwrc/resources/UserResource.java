@@ -128,7 +128,22 @@ public class UserResource {
 		
 	}
 	
-	
+
+	/**
+	*
+	* @author Anthony Scheeres
+	 * @return 
+	* 
+	*
+	*/	
+	@POST
+	@Path("/{token}/hasAdmin")
+	public boolean hasAdmin(@PathParam("token") String token)  {
+		TokenController tokenController = new TokenController();
+		long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
+		return authenticationController.hasSuperPermission(employeeId);
+		
+	}
 	
 	
 
@@ -209,4 +224,6 @@ public class UserResource {
 		UserDAO userDatabase = new UserDAO();
 		return userDatabase.showOneUserPermission(u);
 	}
+	
+	
 }	
