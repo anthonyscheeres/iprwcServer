@@ -43,7 +43,7 @@ public class LoggerController {
            // LOGGER.log(Level.FINE, "Finer logged");
             
         }catch(IOException exception){
-            LOGGER.log(Level.SEVERE, "Error occur in FileHandler.", exception);
+            LOGGER.log(Level.SEVERE, "Error occur", exception);
         }
         fileHandler.close();
       //  LOGGER.finer("Finest example on LOGGER handler completed.");

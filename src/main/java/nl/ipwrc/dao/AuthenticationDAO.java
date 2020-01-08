@@ -125,7 +125,7 @@ public class AuthenticationDAO {
 		try {
 			return databaseController.connectDatabaseJson(databaseModel, query, list, false);
 		} catch (Exception e) {
-			e.printStackTrace();
+			 LOGGER.log(Level.SEVERE, "Error occur", e);
 		}
 
 		return Response.fail.toString();

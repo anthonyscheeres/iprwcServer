@@ -255,7 +255,7 @@ public class DatabaseUtilities {
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+             LOGGER.log(Level.SEVERE, "Error occur", e);
         }
         return columnNames;
     }
