@@ -74,7 +74,9 @@ class IpwrcServerApplication extends Application<Configuration> {
 	            environment.servlets().addFilter("CORS", CrossOriginFilter.class);
 
 	        // Configure CORS parameters
-	        cors.setInitParameter("allowedOrigins", "*");
+	        
+	        cors.setInitParameter("allowedOrigins", "http://mijnapplicatie.nl");
+	     
 	        cors.setInitParameter("allowedHeaders", "X-Requested-With,Content-Type,Accept,Origin");
 	        cors.setInitParameter("allowedMethods", "OPTIONS,GET,PUT,POST,DELETE,HEAD");
 

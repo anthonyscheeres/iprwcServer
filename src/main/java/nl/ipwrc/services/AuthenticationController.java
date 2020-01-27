@@ -158,7 +158,6 @@ public class AuthenticationController {
 */
 public boolean validate(String token, String permission) {
 	TokenController tokenController = new TokenController();
-	AuthenticationController authenticationController = new AuthenticationController();
 	AuthenticationDAO authenticationDAO = new AuthenticationDAO();
 	long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
 	return authenticationDAO.hasEnumHandeler(employeeId, permission);

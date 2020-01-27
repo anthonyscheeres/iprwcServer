@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import nl.ipwrc.services.AccountController;
+import nl.ipwrc.services.CredentialController;
 
 class Login {
 
@@ -15,7 +16,7 @@ class Login {
      */
 	@Test
 	void testCompareLoginCredentials() {
-		AccountController accountController  = new AccountController ();
+		CredentialController accountController  = new CredentialController ();
 		String username = "Anthony";
 		String username2 = "Anthony";
 		String password = "passw0rd"; 

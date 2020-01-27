@@ -76,20 +76,7 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
     }
 
 
-    /**
-     * @author Anthony Scheeres
-     */
-    public boolean checkInputValide(String email, String password) {
-        MailController m = new MailController();
-        if (!m.isValidEmailAddress(email)) {
-            return false;
-        }
-
-        if (password.length() == 0) {
-            return false;
-        }
-        return true;
-    }
+ 
 
 
     /**
@@ -97,7 +84,8 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
      */
     public String handleCreateUserModel2(UserModel u) {
     	String fail = Response.fail.toString();
-        if (!checkInputValide(u.getEmail(), u.getPassword())) {
+    	CredentialController credentialController = new CredentialController();
+        if (!credentialController.checkInputValide(u.getEmail(), u.getPassword())) {
             return fail;
         }
         try {
@@ -182,8 +170,8 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
   */
  private String GetLoginInformation(String username, String username2, String passwordFromDatabase,  String passwordFromClient, String permission, String UserId, String token){
 	 String failtResponse = Response.fail.toString();
-	
-	  if (checkCredentials(username, username2, passwordFromDatabase,  passwordFromClient)) {
+	 CredentialController credentialController = new CredentialController();
+	  if (credentialController.checkCredentials(username, username2, passwordFromDatabase,  passwordFromClient)) {
 	    	boolean hasPermission = permission.length() ==0;
 	    	if(hasPermission) {
 	    
@@ -210,21 +198,7 @@ private String askNewTokenForAccount(int id) {
 }
  
  
- 
 
- /**
-  *
-  * @author Anthony Scheeres
-  *  
-  * 
-  *
-  */
- public boolean checkCredentials(String username,String username2, String password, String password2){
-  if (username.equals(username2) && password.equals(password2)) {
-   return true;
-  }
-  return false;
- }
 
     /**
      * @author Anthony Scheeres
