@@ -27,12 +27,11 @@ public class TokenController {
 	 }
 	 
 	 
-	 private boolean isStringEmty(String token){
-		  if (token.length()!=0) {
-			  return true;
-		  }
-		  return false;
-	 }
+		 
+		 private boolean isStringEmty(String token){
+			  return token.length()!=0;	
+		 }
+		 
 	 
 	 
 	 
