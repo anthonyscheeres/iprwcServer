@@ -67,7 +67,7 @@ class IpwrcServerApplication extends Application<Configuration> {
 	    @Override
 	    public void run(Configuration configuration, Environment environment) throws Exception {
 	    	DirectoryController directoryController = new DirectoryController();
-	    	
+	    	   	
 	    	intializeSettings();
 	    	 // Enable CORS headers
 	        final FilterRegistration.Dynamic cors =
@@ -86,7 +86,6 @@ class IpwrcServerApplication extends Application<Configuration> {
 			jersey.register(new UserResource());
 			jersey.register(new LogResource());
 			jersey.register(new ProductResource());
-	    
 	    }
 	    
 	    

@@ -26,19 +26,26 @@ public class PermissionDAO {
 	  * 
 	  *
 	  */
-	 public boolean giveRead2(String username) {
-		  String query2 = "select permission from app_user where username=?;";
+	 public boolean giveRead2(String u) {
 		  Enum permission = Permission.READ;
-	 if (!userDatabase.hasPermission(permission.toString(), username, query2)) {
-		  try {
-			givePermission(username, permission);
-			 return true;
-		} catch (Exception e) {
-		}
-	 }return false;
+
+		  return handleGivePermission(u, permission);
 	 }
 
-
+	 
+	 public boolean handleGivePermission(String u, Enum permission) {
+		  String query2 = "select permission from app_user where username=?;";
+		boolean hasSuper = !userDatabase.hasPermission(permission.toString(), u, query2);
+	 if (hasSuper) {
+		  try {
+			  handleGivePermission(u, permission);
+			 return hasSuper;
+		} catch (Exception e) {
+		
+		}
+		  
+	 }return hasSuper;
+	 }
 	 /**
 	 *
 	 * @author Anthony Scheeres
@@ -47,17 +54,8 @@ public class PermissionDAO {
 	 *
 	 */
 	 public boolean giveWrite2(String u) {
-		  String query2 = "select permission from app_user where username=?;";
 		  Enum permission = Permission.WRITE;
-	 if (!userDatabase.hasPermission(permission.toString(), u, query2)) {
-		  try {
-			  givePermission(u, permission);
-			 return true;
-		} catch (Exception e) {
-		
-		}
-		  
-	 }return false;
+		  return handleGivePermission(u, permission);
 	 }
 
 	 
@@ -67,17 +65,11 @@ public class PermissionDAO {
 	  * @author Anthony Scheeres
 	  */
 	 public boolean giveDelete2(String u) {
-		  String query2 = "select permission from app_user where username=?;";
 		  Enum permission = Permission.DELETE;
-		  if (!userDatabase.hasPermission(permission.toString(), u, query2)) {
-		 	  try {
-		 		  givePermission(u, permission);
-		 		 return true;
-		 	} catch (Exception e) {
-		 	}
-		 	  
-		  }return false;
+
+		  return handleGivePermission(u, permission);
 	 }
+
 
 
 
