@@ -84,8 +84,8 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
      */
     public String handleCreateUserModel2(UserModel u) {
     	String fail = Response.fail.toString();
-    	CredentialController credentialController = new CredentialController();
-        if (!credentialController.checkInputValide(u.getEmail(), u.getPassword())) {
+    	AccountController credentialController = new AccountController();
+        if (!credentialController.checkInputValide(u)) {
             return fail;
         }
         try {
@@ -197,7 +197,31 @@ private String askNewTokenForAccount(int id) {
 	  return newToken;
 }
  
- 
+/**
+ * @author Anthony Scheeres
+ */
+public boolean checkInputValide(UserModel u) {
+	
+	String email = u.getEmail(); 
+	String password = u.getPassword();
+    MailController m = new MailController();
+    boolean response = true;
+    
+    if (!m.isValidEmailAddress(email)) {
+    	response= false;
+    }
+
+    if (password.length() == 0) {
+    	response= false;
+    }
+    
+    if (PreparedStatmentDatabaseUtilities.isNumeric(u.getUsername())){
+    	response= false;
+    }
+    
+    
+    return response;
+}
 
 
     /**
