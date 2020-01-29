@@ -194,8 +194,8 @@ public class UserResource {
 	@POST
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String checkLogin(UserModel u) throws Exception  {
-		return accountController.checkLogin(u);
+	public String checkLogin(UserModel u)   {
+		return accountController.handleCheckLogin(u);
 	}
 	
 	/**

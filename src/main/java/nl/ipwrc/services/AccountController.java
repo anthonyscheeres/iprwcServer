@@ -122,7 +122,15 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
                 email,
                 title);
     }
-
+public String handleCheckLogin(UserModel u) {
+	try {
+		return checkLogin(u);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return Response.fail.toString();
+}
  /**
   *
   * @author Anthony Scheeres
