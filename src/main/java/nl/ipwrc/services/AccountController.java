@@ -92,6 +92,9 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
         return handleFindValideTokenForAccount(u);
     }
 
+    /**
+     * @author Anthony Scheeres
+     */
     public String handleFindValideTokenForAccount(UserModel u) {
     	String response = Response.fail.toString();
         try {
@@ -103,7 +106,10 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
 		  return response;
     }
     
-    
+
+    /**
+     * @author Anthony Scheeres
+     */
     public String findValideTokenForAccount(UserModel u) throws Exception {
     	String response = Response.fail.toString();
     	   String token = createUserModel(u);
