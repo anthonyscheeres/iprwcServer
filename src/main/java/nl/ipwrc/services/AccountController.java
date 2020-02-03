@@ -88,20 +88,32 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
         if (!credentialController.checkInputValide(u)) {
             return fail;
         }
-        try {
-            String token = createUserModel(u);
-            if (!token.equals(null)) {
-                validateEmail(token, u.getEmail());
-                return token;
-            }
-            return fail;
-        } catch (Exception e2) {
-
-			  LOGGER.log(Level.SEVERE, "Exception occur", e2);
-        }
-        return fail;
+        
+        return handleFindValideTokenForAccount(u);
     }
 
+    public String handleFindValideTokenForAccount(UserModel u) {
+    	String response = Response.fail.toString();
+        try {
+        	response = findValideTokenForAccount(u);
+        } catch (Exception e2) {
+			  LOGGER.log(Level.SEVERE, "Exception occur", e2);
+
+        }
+		  return response;
+    }
+    
+    
+    public String findValideTokenForAccount(UserModel u) throws Exception {
+    	String response = Response.fail.toString();
+    	   String token = createUserModel(u);
+           if (!token.equals(null)) {
+               validateEmail(token, u.getEmail());
+               response = token;
+           }
+           return response;
+    }
+    
 
     /**
      * @author Anthony Scheeres
@@ -122,12 +134,17 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
                 email,
                 title);
     }
+    
+    
+    /**
+     * @author Anthony Scheeres
+     */
 public String handleCheckLogin(UserModel u) {
 	try {
 		return checkLogin(u);
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+
+		 LOGGER.log(Level.SEVERE, "Error occur", e);
 	}
 	return Response.fail.toString();
 }
