@@ -26,26 +26,57 @@ public class PermissionDAO {
 	  * 
 	  *
 	  */
-	 public boolean giveRead2(String u) {
-		  Enum permission = Permission.READ;
+	 public boolean giveReadInDatabase(String u) {
+		  Enum permissionOnData = Permission.READ;
 
-		  return handleGivePermission(u, permission);
+		  return autorizeGivePermissionOverApiInDatabase(u, permissionOnData);
 	 }
 
+
+	 public boolean hasPermissionOnApi (String username, Enum permissionOnApi) {
+		String queryForPermissionOfUser = "select permission from app_user where username=?;";
+		  
+		boolean hasSuperHere = !userDatabase.hasPermission(permissionOnApi.toString(), username, queryForPermissionOfUser);
+		return hasSuperHere;
+	 }
+	 /**
+	  *
+	  * @author Anthony Scheeres
+	 * @return 
+	  * 
+	  *
+	  */
+	 public boolean autorizeGivePermissionOverApiInDatabase(String username, Enum permissionOnApi) {
+	boolean hasSuperOverApi = hasPermissionOnApi(username, permissionOnApi);
+	 if (hasSuperOverApi) {
+			  catchHandleGivePermissionOverApiInDatabase(username, permissionOnApi);  
+	 }return hasSuperOverApi;
+	 }
 	 
-	 public boolean handleGivePermission(String u, Enum permission) {
-		  String query2 = "select permission from app_user where username=?;";
-		boolean hasSuper = !userDatabase.hasPermission(permission.toString(), u, query2);
-	 if (hasSuper) {
+	 
+	 
+	 
+
+	 /**
+	  *
+	  * @author Anthony Scheeres
+	 * @return 
+	  * 
+	  *
+	  */
+	 public void catchHandleGivePermissionOverApiInDatabase(String username, Enum permissionOnApi){
 		  try {
-			  handleGivePermission(u, permission);
-			 return hasSuper;
+			  autorizeGivePermissionOverApiInDatabase(username, permissionOnApi);
 		} catch (Exception e) {
 		
 		}
-		  
-	 }return hasSuper;
 	 }
+	 
+	 
+	 
+	 
+	 
+	 
 	 /**
 	 *
 	 * @author Anthony Scheeres
@@ -55,7 +86,7 @@ public class PermissionDAO {
 	 */
 	 public boolean giveWrite2(String u) {
 		  Enum permission = Permission.WRITE;
-		  return handleGivePermission(u, permission);
+		  return autorizeGivePermissionOverApiInDatabase(u, permission);
 	 }
 
 	 
@@ -67,7 +98,7 @@ public class PermissionDAO {
 	 public boolean giveDelete2(String u) {
 		  Enum permission = Permission.DELETE;
 
-		  return handleGivePermission(u, permission);
+		  return autorizeGivePermissionOverApiInDatabase(u, permission);
 	 }
 
 

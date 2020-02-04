@@ -40,8 +40,8 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
  * @return
  * @author Anthony Scheeres
  */
-    public boolean giveRead2(String username) {
-        return permissionDatabase.giveRead2(username);
+    public boolean giveReadToAccountByUsername(String username) {
+        return permissionDatabase.giveReadInDatabase(username);
     }
 
 
@@ -270,7 +270,7 @@ public boolean checkInputValide(UserModel u) {
             if (email != null && tokenFromDatabase != null) {
                 if (token.equals(tokenFromDatabase)) {
                     	String accountModel = data.get(User.username.toString()).get(i); //use username to uniquely identify a user 
-                        giveRead2(accountModel);
+                    	giveReadToAccountByUsername(accountModel);
                         return Response.success.toString();
      
                 }

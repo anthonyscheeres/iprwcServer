@@ -46,7 +46,7 @@ public class AuthenticationController {
 		if (!hasSuperPermission(employeeId)) {
 			return Response.fail.toString();
 		}
-		if (accountController.giveRead2(u)) {
+		if (accountController.giveReadToAccountByUsername(u)) {
 			loggingController.createLog(
 					new LogModel(
 							null, 
