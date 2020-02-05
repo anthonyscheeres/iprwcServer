@@ -42,7 +42,7 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
  * @author Anthony Scheeres
  */
     public boolean giveReadToAccountByUsername(String username) {
-        return permissionDatabase.giveReadInDatabase(username);
+        return permissionDatabase.giveRead2(username);
     }
 
 
@@ -50,7 +50,6 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
      * @author Anthony Scheeres
      */
     public void giveWrite2(String user) {
-    	  System.out.println("hi5");
         permissionDatabase.giveWrite2(user);
     }
 
