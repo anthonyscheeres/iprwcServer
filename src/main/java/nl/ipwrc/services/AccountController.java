@@ -49,15 +49,16 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
     /**
      * @author Anthony Scheeres
      */
-    public boolean giveWrite2(String user) {
-        return permissionDatabase.giveWrite2(user);
+    public void giveWrite2(String user) {
+    	  System.out.println("hi5");
+        permissionDatabase.giveWrite2(user);
     }
 
     /**
      * @author Anthony Scheeres
      */
-    public boolean giveDelete2(String user) {
-        return permissionDatabase.giveDelete2(user);
+    public void giveDelete2(String user) {
+       permissionDatabase.giveDelete2(user);
     }
 
     /**

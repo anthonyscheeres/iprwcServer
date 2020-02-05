@@ -2,12 +2,15 @@ package nl.ipwrc.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import nl.ipwrc.models.AccountModel;
 import nl.ipwrc.models.DataModel;
 import nl.ipwrc.models.DatabaseModel;
 import nl.ipwrc.models.Permission;
 import nl.ipwrc.services.AuthenticationController;
+import nl.ipwrc.services.LoggerController;
 
 public class PermissionDAO {
 
@@ -17,6 +20,7 @@ public class PermissionDAO {
 	 private UserDAO userDatabase = new UserDAO();
 
 
+	    private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
 
 
 	 /**
@@ -35,7 +39,7 @@ public class PermissionDAO {
 
 	 public boolean hasPermissionOnApi (String username, Enum permissionOnApi) {
 		String queryForPermissionOfUser = "select permission from app_user where username=?;";
-		  
+		  System.out.println("hi");
 		boolean hasSuperHere = !userDatabase.hasPermission(permissionOnApi.toString(), username, queryForPermissionOfUser);
 		return hasSuperHere;
 	 }
@@ -48,8 +52,16 @@ public class PermissionDAO {
 	  */
 	 public boolean autorizeGivePermissionOverApiInDatabase(String username, Enum permissionOnApi) {
 	boolean hasSuperOverApi = hasPermissionOnApi(username, permissionOnApi);
+	  System.out.println("hi2");
 	 if (hasSuperOverApi) {
-			  catchHandleGivePermissionOverApiInDatabase(username, permissionOnApi);  
+		  System.out.println("hi3");
+		  try {
+			givePermission(username, permissionOnApi);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+			  return hasSuperOverApi;
 	 }return hasSuperOverApi;
 	 }
 	 
@@ -65,11 +77,17 @@ public class PermissionDAO {
 	  *
 	  */
 	 public void catchHandleGivePermissionOverApiInDatabase(String username, Enum permissionOnApi){
+		 new Thread(() -> {
+	    
+	    
 		  try {
-			  autorizeGivePermissionOverApiInDatabase(username, permissionOnApi);
+			
+			  givePermission(username, permissionOnApi);
 		} catch (Exception e) {
-		
+
+      	  LOGGER.log(Level.SEVERE, "Exception occur", e);
 		}
+		 	}).start();
 	 }
 	 
 	 
@@ -84,9 +102,15 @@ public class PermissionDAO {
 	 * 
 	 *
 	 */
-	 public boolean giveWrite2(String u) {
+	 public void giveWrite2(String u) {
 		  Enum permission = Permission.WRITE;
-		  return autorizeGivePermissionOverApiInDatabase(u, permission);
+		  System.out.println("hi1");
+		 try {
+			givePermission(u, permission);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	 }
 
 	 
@@ -95,10 +119,15 @@ public class PermissionDAO {
 	 /**
 	  * @author Anthony Scheeres
 	  */
-	 public boolean giveDelete2(String u) {
+	 public void giveDelete2(String u) {
 		  Enum permission = Permission.DELETE;
 
-		  return autorizeGivePermissionOverApiInDatabase(u, permission);
+		 try {
+			givePermission(u, permission);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	 }
 
 

@@ -47,17 +47,10 @@ public class AuthenticationController {
 			return Response.fail.toString();
 		}
 		if (accountController.giveReadToAccountByUsername(u)) {
-			loggingController.createLog(
-					new LogModel(
-							null, 
-							"Gebruiker heeft lees rechten gekregen:"+ u, 
-							"Gebruiker:"+ u + ", deze gebruiker heeft lees rechten gekregen van super gebruiker", 
-							new UserModel(null, null, employeeId, null, null), 
-							0 
-							), 0);
-			return Response.success.toString();
-		}
-		return Response.fail.toString();
+
+	return Response.success.toString();
+		
+		}return Response.fail.toString();
 		}
 
 
@@ -78,25 +71,11 @@ public class AuthenticationController {
 		}
 		
 		
-		if (accountController.giveWrite2(u)) {
-		loggingController.createLog(
-				new LogModel(
-				null, 
-				"Gebruiker heeft verwijder rechten gekregen:"+ u, 
-				"Gebruiker:"+ u+ ", deze gebruiker heeft verwijder rechten gekregen van super gebruiker", 
-				new UserModel(
-						null, 
-						null, 
-						employeeId, 
-						null, 
-						null
-						), 
-				0 ), 0);
+	accountController.giveWrite2(u);
+
 		return Response.success.toString();
 	}
-	return Response.fail.toString();
-	}
-
+	
 
 
 
@@ -122,33 +101,16 @@ public class AuthenticationController {
 	  *
 	  */
 	public String handleGiveDelete(String u, String token) {
-		LoggingController loggingController = new LoggingController();
 		AccountController accountController = new AccountController();
 		TokenController tokkenController = new TokenController();
 		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
 		if (!hasSuperPermission(employeeId)) {
 			return Response.fail.toString();
 		}
-	if (accountController.giveDelete2(u)) {
-			
-			loggingController.createLog(
-					new LogModel(
-							null,
-							"Gebruiker heeft schrijf rechten gekregen:"+ u,
-							"Gebruiker:"+ u+ ", deze gebruiker heeft schrijf rechten gekregen van super gebruiker",
-							new UserModel(
-									null,
-									null,
-									employeeId,
-									null,
-									null),
-							0 
-							), 0);
+		accountController.giveDelete2(u);
 			return Response.success.toString();
+	
 	}
-	return Response.fail.toString();
-	}
-
 
 
 /**

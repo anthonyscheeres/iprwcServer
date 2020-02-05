@@ -43,7 +43,6 @@ public class TokenController {
 		*looks if token exist in hashmap
 		*/
 		private String findValideTokenInHashmap(HashMap<String, List<String>> hashmap, String token) {
-		 //hashmap.get("token").get(0));
 		 String result = null ;
 		 
 		 
