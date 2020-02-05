@@ -32,6 +32,7 @@ public class AccountController {
 private UserDAO userDatabase = new UserDAO();
 private PermissionDAO permissionDatabase = new PermissionDAO();
 
+private TokenController tokenController = new TokenController();
 
 private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
 
@@ -294,6 +295,8 @@ public boolean checkInputValide(UserModel u) {
 	* 
 	*/
     public void handleRemoveUser(AccountModel u, String token) {
+    	long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
+    	
         userDatabase.removeUserMode(u);
     }
 }

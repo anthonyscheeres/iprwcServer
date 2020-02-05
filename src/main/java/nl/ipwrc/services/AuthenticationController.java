@@ -121,9 +121,11 @@ public class AuthenticationController {
 	  * @author Anthony Scheeres
 	  *
 	  */
-	public String handleGiveDelete(String u, long employeeId) {
+	public String handleGiveDelete(String u, String token) {
 		LoggingController loggingController = new LoggingController();
 		AccountController accountController = new AccountController();
+		TokenController tokkenController = new TokenController();
+		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
 		if (!hasSuperPermission(employeeId)) {
 			return Response.fail.toString();
 		}
