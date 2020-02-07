@@ -43,8 +43,8 @@ public class UserResource {
 	@POST
 	@Path("/{token}/read")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String giveRead(@PathParam("token") String token, AccountModel u)  {
-		return authenticationController.handleGiveRead(u.getUsername(), token);
+	public String giveReadOverAPiIfTokenIIsFromAdmin(@PathParam("token") String tokenCheckThisOneFirst, AccountModel accountModel)  {
+		return authenticationController.handleGiveReadOverAPiIfTokenIIsFromAdmin(accountModel.getUsername(), tokenCheckThisOneFirst);
 	}
 	
 	
@@ -58,8 +58,8 @@ public class UserResource {
 	@POST
 	@Path("/{token}/write")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String giveWrite(@PathParam("token") String token,AccountModel u)  {
-		return authenticationController.handleGiveWrite(u.getUsername(), token);
+	public String giveWriteOverAPiIfTokenIIsFromAdmin(@PathParam("token") String tokenCheckThisOneFirst,AccountModel u)  {
+		return authenticationController.handleGiveWriteOverAPiIfTokenIIsFromAdmin(u.getUsername(), tokenCheckThisOneFirst);
 	}
 	
 	
@@ -72,9 +72,9 @@ public class UserResource {
 	@POST
 	@Path("/{token}/delete")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String giveDelete(@PathParam("token") String token,AccountModel u)  {
+	public String giveDeleteOverAPiIfTokenIIsFromAdmin(@PathParam("token") String tokenCheckThisOneFirst,AccountModel accountModel)  {
 
-		return authenticationController.handleGiveDelete(u.getUsername(), token);
+		return authenticationController.handleGiveDeleteOverAPiIfTokenIIsFromAdmin(accountModel.getUsername(), tokenCheckThisOneFirst);
 		}
 	
 	
@@ -90,8 +90,8 @@ public class UserResource {
 	*/	
 	@POST
 	@Path("/{token}/hasRead")
-	public Object hasRead(@PathParam("token") String token)  {
-		return authenticationController.validate(token,Permission.READ.toString());
+	public Object hasRead(@PathParam("token") String tokenCheckThisOneFirst)  {
+		return authenticationController.validateTokenForPermission(tokenCheckThisOneFirst,Permission.READ.toString());
 		
 	}
 	
@@ -106,8 +106,8 @@ public class UserResource {
 	*/	
 	@POST
 	@Path("/{token}/hasWrite")
-	public Object hasWrite(@PathParam("token") String token)  {
-		return authenticationController.validate(token, Permission.WRITE.toString());
+	public Object hasWrite(@PathParam("token") String tokentokenCheckThisOneFirst)  {
+		return authenticationController.validateTokenForPermission(tokentokenCheckThisOneFirst, Permission.WRITE.toString());
 		
 	}
 	
@@ -123,7 +123,7 @@ public class UserResource {
 	@POST
 	@Path("/{token}/hasDelete")
 	public boolean hasDelete(@PathParam("token") String token)  {
-		return authenticationController.validate(token, Permission.DELETE.toString());
+		return authenticationController.validateTokenForPermission(token, Permission.DELETE.toString());
 		
 	}
 	
@@ -140,7 +140,7 @@ public class UserResource {
 	public boolean hasAdmin(@PathParam("token") String token)  {
 		TokenController tokenController = new TokenController();
 		long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
-		return authenticationController.hasSuperPermission(employeeId);
+		return authenticationController.hasSuperPermissionOverApi(employeeId);
 		
 	}
 	
@@ -207,7 +207,7 @@ public class UserResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String showUsers(@PathParam("token") String token) throws Exception {
 		UserController userController = new UserController();
-		return userController.showUsers(token);
+		return userController.showUsersASAJsonString(token);
 	}
 	
 	

@@ -38,12 +38,12 @@ public class AuthenticationController {
 	  * 
 	  *
 	  */
-	public String handleGiveRead(String u, String token) {
+	public String handleGiveReadOverAPiIfTokenIIsFromAdmin(String u, String token) {
 		AccountController accountController = new AccountController();
 		LoggingController loggingController = new LoggingController();
 		TokenController tokenController = new TokenController();
 		long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
-		if (!hasSuperPermission(employeeId)) {
+		if (!hasSuperPermissionOverApi(employeeId)) {
 			return Response.fail.toString();
 		}
 		if (accountController.giveReadToAccountByUsername(u)) {
@@ -61,12 +61,12 @@ public class AuthenticationController {
 	  * 
 	  *
 	  */
-	public String handleGiveWrite(String u,String token) {
+	public String handleGiveWriteOverAPiIfTokenIIsFromAdmin(String u,String token) {
 		LoggingController loggingController = new LoggingController();
 		AccountController accountController = new AccountController();
 		TokenController tokkenController = new TokenController();
 		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
-		if (!hasSuperPermission(employeeId)) {
+		if (!hasSuperPermissionOverApi(employeeId)) {
 			return Response.fail.toString();
 		}
 		
@@ -84,7 +84,7 @@ public class AuthenticationController {
 	  * @author Anthony Scheeres 
 	  *
 	  */
-	public boolean hasSuperPermission(long employeeId) {
+	public boolean hasSuperPermissionOverApi(long employeeId) {
 		AuthenticationDAO authenticationDAO = new AuthenticationDAO();
 		if (authenticationDAO.hasEnumHandeler(employeeId, Permission.WRITE.toString()) && authenticationDAO.hasEnumHandeler(employeeId, Permission.READ.toString()) && authenticationDAO.hasEnumHandeler(employeeId, Permission.DELETE.toString())){
 			return true;
@@ -100,11 +100,11 @@ public class AuthenticationController {
 	  * @author Anthony Scheeres
 	  *
 	  */
-	public String handleGiveDelete(String u, String token) {
+	public String handleGiveDeleteOverAPiIfTokenIIsFromAdmin(String u, String token) {
 		AccountController accountController = new AccountController();
 		TokenController tokkenController = new TokenController();
 		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
-		if (!hasSuperPermission(employeeId)) {
+		if (!hasSuperPermissionOverApi(employeeId)) {
 			return Response.fail.toString();
 		}
 		accountController.giveDelete2(u);
@@ -120,7 +120,7 @@ public class AuthenticationController {
 * 
 *
 */
-public boolean validate(String token, String permission) {
+public boolean validateTokenForPermission(String token, String permission) {
 	TokenController tokenController = new TokenController();
 	AuthenticationDAO authenticationDAO = new AuthenticationDAO();
 	long employeeId = Long.parseLong(tokenController.tokenToUserId(token));

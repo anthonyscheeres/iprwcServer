@@ -27,10 +27,10 @@ public class ProductController {
 	 * @throws Exception 
 	* 
 	*/
-	public void handleCreateProduct(ProductModel u, String token) throws Exception {
+	public void handleCreateProduct(ProductModel userModel, String token) throws Exception {
 		
 		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
-		if (!authenticationController.hasSuperPermission(employeeId)) {
+		if (!authenticationController.hasSuperPermissionOverApi(employeeId)) {
 			return;
 		}
 		
@@ -41,11 +41,11 @@ public class ProductController {
 		 hashmap = DAO.getProducts();
 		
 		
-		long id = userController.createUserId2(hashmap.get("id"));
+		long id = userController.createUniqueUserIdForIdentification(hashmap.get("id"));
 		
-		u.setId(id);
+		userModel.setId(id);
 		
-		DAO.addProduct(u);
+		DAO.addProduct(userModel);
 		
 	}
 	/**
@@ -55,23 +55,23 @@ public class ProductController {
 	 * @throws Exception 
 	* 
 	*/
-	public String handleChangeImgProduct(ProductModel u, String token) throws Exception {
+	public String handleChangeImgProduct(ProductModel product, String token) throws Exception {
 		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
-		if (!authenticationController.hasSuperPermission(employeeId)) {
+		if (!authenticationController.hasSuperPermissionOverApi(employeeId)) {
 	
 			return Response.fail.toString();
 		}
-		DAO.changeImg(u);
+		DAO.changeImgForAProduct(product);
 	
 		return Response.success.toString();
 	}
 	public String handleRemoveProduct(ProductModel productModel, String token) {
 		long employeeId = Long.parseLong(tokkenController.tokenToUserId(token));
-		if (!authenticationController.hasSuperPermission(employeeId)) {
+		if (!authenticationController.hasSuperPermissionOverApi(employeeId)) {
 			
 			return Response.fail.toString();
 		}
-		DAO.removeProduct(productModel);
+		DAO.removeProductFromDatabase(productModel);
 		return Response.success.toString();
 	}
 }

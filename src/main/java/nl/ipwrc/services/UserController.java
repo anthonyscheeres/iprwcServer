@@ -22,10 +22,10 @@ public class UserController {
 	
 	
 	
-	public String showUsers(String token) throws Exception {
+	public String showUsersASAJsonString(String token) throws Exception {
 		long employeeId = Long.parseLong(tokenController.tokenToUserId(token));
 	
-		if (!authenticationController.hasSuperPermission(employeeId)) {
+		if (!authenticationController.hasSuperPermissionOverApi(employeeId)) {
 			//"fail");
 			return Response.fail.toString();
 		}
@@ -83,7 +83,7 @@ public class UserController {
     /**
      * @author Anthony Scheeres
      */
-    public long createUserId2(List<String> list) {
+    public long createUniqueUserIdForIdentification(List<String> list) {
         if (list == null) {
             return 1;
         }

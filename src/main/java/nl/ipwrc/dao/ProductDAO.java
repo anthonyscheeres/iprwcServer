@@ -25,7 +25,7 @@ public class ProductDAO {
         return d.connectThisDatabaseJson(databaseModel, query, false);
     }
 
-    public void removeProduct(ProductModel p) {
+    public void removeProductFromDatabase(ProductModel p) {
         PreparedStatmentDatabaseUtilities preparedStatmentDatabaseUtilities = new PreparedStatmentDatabaseUtilities();
         String deletequery =
                 String.format("DELETE FROM %s\r\n" +
@@ -65,7 +65,7 @@ public class ProductDAO {
 	        pUtilites.connectDatabaseJson(databaseModel, query2, variables, false);
 	    }
 
-	public void changeImg(ProductModel product) throws Exception {
+	public void changeImgForAProduct(ProductModel product) throws Exception {
 	     DatabaseUtilities d = new DatabaseUtilities();
 		String img = product.getImg();
 	

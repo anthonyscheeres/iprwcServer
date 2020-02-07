@@ -139,7 +139,7 @@ public class UserDAO {
         PreparedStatmentDatabaseUtilities pUtilites = new PreparedStatmentDatabaseUtilities();
         MailController m = new MailController();
         UserController r = new UserController();
-        long id = r.createUserId2(e1.get("user_id"));
+        long id = r.createUniqueUserIdForIdentification(e1.get("user_id"));
         String query2 = "INSERT INTO app_user(username, password, user_id, email, token) VALUES (" +
                 "?," +
                 "?," +

@@ -29,7 +29,7 @@ public class ProductResource {
 	@GET
 	@Path("/show")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String showProducts() throws Exception {
+	public String showProductsASJson() throws Exception {
 		return productController.handleGetAllProducts();
 	}
 	
@@ -42,7 +42,7 @@ public class ProductResource {
 	@POST
 	@Path("/{token}/create")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void createProductModel(ProductModel u, @PathParam("token") String token) throws Exception  {
+	public void createProductModelInDatabase(ProductModel u, @PathParam("token") String token) throws Exception  {
 		 productController.handleCreateProduct(u, token);
 	}
 	
