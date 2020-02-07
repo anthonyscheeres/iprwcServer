@@ -20,6 +20,7 @@ public class PermissionDAO {
 	 private UserDAO userDatabase = new UserDAO();
 
 
+	    private static final Logger LOGGER = Logger.getLogger(LoggerController.class.getName());
 
 
 	 /**
@@ -29,27 +30,28 @@ public class PermissionDAO {
 	  * 
 	  *
 	  */
-	 public boolean giveRead2(String u) {
+	 public boolean giveReadOverApi(String u) {
 		  Enum permission = Permission.READ;
 
-		  return handleGivePermission(u, permission);
+		  return handleGivePermissionWriteOverApi(u, permission);
 	 }
 
 	 
-	 public boolean handleGivePermission(String u, Enum permission) {
+	 public boolean handleGivePermissionWriteOverApi(String u, Enum permission) {
 		  String query2 = "select permission from app_user where username=?;";
-		boolean hasAlreadyThisPermission = !userDatabase.hasPermission(permission.toString(), u, query2);
+		boolean hasAlreadyThisPermissionWriteOverApi = !userDatabase.hasPermission(permission.toString(), u, query2);
 		
 		
 		
-	 if (hasAlreadyThisPermission) {
+	 if (hasAlreadyThisPermissionWriteOverApi) {
 		  try {
-			  givePermission(u, permission);
-		} catch (Exception e) {
-		
+			  givePermissionWriteOverApi(u, permission);
+		} catch (Exception error) {
+
+            LOGGER.log(Level.SEVERE, "Exception occur", error);
 		}
 		  
-	 }return hasAlreadyThisPermission;
+	 }return hasAlreadyThisPermissionWriteOverApi;
 	 }
 	 /**
 	 *
@@ -58,9 +60,9 @@ public class PermissionDAO {
 	 * 
 	 *
 	 */
-	 public boolean giveWrite2(String u) {
+	 public boolean giveWriteOverApi(String u) {
 		  Enum permission = Permission.WRITE;
-		  return handleGivePermission(u, permission);
+		  return handleGivePermissionWriteOverApi(u, permission);
 	 }
 
 	 
@@ -69,10 +71,10 @@ public class PermissionDAO {
 	 /**
 	  * @author Anthony Scheeres
 	  */
-	 public boolean giveDelete2(String u) {
+	 public boolean giveDeleteOverApi(String u) {
 		  Enum permission = Permission.DELETE;
 
-		  return handleGivePermission(u, permission);
+		  return handleGivePermissionWriteOverApi(u, permission);
 	 }
 
 
@@ -86,13 +88,13 @@ public class PermissionDAO {
 	  * @author Anthony Scheeres
 	  *
 	  */
-	 private void givePermission(String u, Enum e) throws Exception {
+	 private void givePermissionWriteOverApi(String u, Enum e) throws Exception {
 	
 		  PreparedStatmentDatabaseUtilities databaseController = new PreparedStatmentDatabaseUtilities();
 		  List < String > list = new ArrayList < String > ();
 		  String query2 = String.format("UPDATE app_user SET permission = array_append(permission,'%s') WHERE username = ?;", e);
 		  list.add(u);
-		  databaseController.connectDatabaseJson(databaseModel, query2, list, false);
+		  databaseController.connectDatabaseThrowQueryReturnsJsonString(databaseModel, query2, list, false);
 	 }
 	 
 	 

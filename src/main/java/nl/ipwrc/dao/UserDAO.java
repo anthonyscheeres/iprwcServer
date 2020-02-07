@@ -103,7 +103,7 @@ public class UserDAO {
         List<String> array = new ArrayList<String>();
         array.add(u.getUsername());
         try {
-            result = f.connectDatabaseJson(databaseModel, query, array, false);
+            result = f.connectDatabaseThrowQueryReturnsJsonString(databaseModel, query, array, false);
         } catch (Exception e) {
         	  LOGGER.log(Level.SEVERE, "Exception occur", e);
         }
@@ -135,7 +135,7 @@ public class UserDAO {
     /**
      * @author Anthony Scheeres
      */
-    public String insertHandlerUser(HashMap<String, List<String>> e1, UserModel u) throws Exception {
+    public String insertInDatabaseHandlerUser(HashMap<String, List<String>> e1, UserModel u) throws Exception {
         PreparedStatmentDatabaseUtilities pUtilites = new PreparedStatmentDatabaseUtilities();
         MailController m = new MailController();
         UserController r = new UserController();
@@ -154,7 +154,7 @@ public class UserDAO {
         variables.add(String.format("%d", id));
         variables.add(u.getEmail());
         variables.add(token);
-        pUtilites.connectDatabaseJson(databaseModel, query2, variables, false);
+        pUtilites.connectDatabaseThrowQueryReturnsJsonString(databaseModel, query2, variables, false);
         return token;
     }
 
@@ -169,7 +169,7 @@ public class UserDAO {
         List<String> f1 = new ArrayList<String>();
         f1.add(u.getUsername());
         try {
-            f.connectDatabaseJson(databaseModel, query, f1, false);
+            f.connectDatabaseThrowQueryReturnsJsonString(databaseModel, query, f1, false);
         } catch (Exception e) {
         	  LOGGER.log(Level.SEVERE, "Exception occur "+ query, e);
         }
@@ -207,7 +207,7 @@ public void removeUserMode(AccountModel u) {
 	List<String> f2 = new ArrayList<String>();
 	f2.add(u.getId());
 	try {
-		preparedStatmentDatabaseUtilities.connectDatabaseJson(databaseModel, deletequery, f1, false);
+		preparedStatmentDatabaseUtilities.connectDatabaseThrowQueryReturnsJsonString(databaseModel, deletequery, f1, false);
 	} catch (Exception e) {
 		  LOGGER.log(Level.SEVERE, "Exception occur", e);
 	}

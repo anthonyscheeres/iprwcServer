@@ -107,7 +107,7 @@ public class AuthenticationController {
 		if (!hasSuperPermissionOverApi(employeeId)) {
 			return Response.fail.toString();
 		}
-		accountController.giveDelete2(u);
+		accountController.giveDeleteOverApi(u);
 			return Response.success.toString();
 	
 	}

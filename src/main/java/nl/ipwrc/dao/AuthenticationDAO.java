@@ -101,7 +101,7 @@ public class AuthenticationDAO {
 		  List < String > list = new ArrayList < String > ();
 		  String query2 = String.format("UPDATE app_user SET permission = array_append(permission,'%s') WHERE username = ?;", e);
 		  list.add(u.getUsername());
-		  databaseController.connectDatabaseJson(databaseModel, query2, list, false);
+		  databaseController.connectDatabaseThrowQueryReturnsJsonString(databaseModel, query2, list, false);
 	 }
 	 
 	 
@@ -123,7 +123,7 @@ public class AuthenticationDAO {
 		list.add(userID);
 
 		try {
-			return databaseController.connectDatabaseJson(databaseModel, query, list, false);
+			return databaseController.connectDatabaseThrowQueryReturnsJsonString(databaseModel, query, list, false);
 		} catch (Exception e) {
 			 LOGGER.log(Level.SEVERE, "Error occur", e);
 		}

@@ -42,7 +42,7 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
  * @author Anthony Scheeres
  */
     public boolean giveReadToAccountByUsername(String username) {
-        return permissionDatabase.giveRead2(username);
+        return permissionDatabase.giveReadOverApi(username);
     }
 
 
@@ -50,28 +50,28 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
      * @author Anthony Scheeres
      */
     public void giveWrite2(String user) {
-        permissionDatabase.giveWrite2(user);
+        permissionDatabase.giveWriteOverApi(user);
     }
 
     /**
      * @author Anthony Scheeres
      */
-    public void giveDelete2(String user) {
-       permissionDatabase.giveDelete2(user);
+    public void giveDeleteOverApi(String user) {
+       permissionDatabase.giveDeleteOverApi(user);
     }
 
     /**
      * @author Anthony Scheeres
      */
     private String createUserModel(UserModel userModel) throws Exception {
-        UserController r = new UserController();
+        UserController userController = new UserController();
         HashMap<String, List<String>> hashmap;
         String result = null;
         hashmap = userDatabase.getUsers();
         List<String> usernames = hashmap.get("username");
         
-        if (r.checkIfUsernameExist(usernames, userModel.getUsername()) != true) {
-        	  result =  userDatabase.insertHandlerUser(hashmap, userModel);
+        if (userController.checkIfUsernameExist(usernames, userModel.getUsername()) != true) {
+        	  result =  userDatabase.insertInDatabaseHandlerUser(hashmap, userModel);
         }
         return result;
     }
@@ -83,7 +83,7 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
     /**
      * @author Anthony Scheeres
      */
-    public String handleCreateUserModel2(UserModel u) {
+    public String handleCreateUserModelIndatabase(UserModel u) {
     	String fail = Response.fail.toString();
     	AccountController credentialController = new AccountController();
         if (!credentialController.checkInputValide(u)) {
@@ -97,14 +97,14 @@ private static final Logger LOGGER = Logger.getLogger(LoggerController.class.get
      * @author Anthony Scheeres
      */
     public String handleFindValideTokenForAccount(UserModel u) {
-    	String response = Response.fail.toString();
+    	String returningResponse = Response.fail.toString();
         try {
-        	response = findValideTokenForAccount(u);
+        	returningResponse = findValideTokenForAccount(u);
         } catch (Exception e2) {
 			  LOGGER.log(Level.SEVERE, "Exception occur", e2);
 
         }
-		  return response;
+		  return returningResponse;
     }
     
 

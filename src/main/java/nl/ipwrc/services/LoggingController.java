@@ -66,7 +66,7 @@ public class LoggingController {
                 f2.add(l.getTitle());
                 f2.add(Long.toString(id));
                 f2.add(Integer.toString(project_id));
-                f.connectDatabaseJson(databaseModel, query2, f2, true);
+                f.connectDatabaseThrowQueryReturnsJsonString(databaseModel, query2, f2, true);
             } catch (PSQLException e) {
                 // TODO Auto-generated catch block
                  LOGGER.log(Level.SEVERE, "Error occur", e);

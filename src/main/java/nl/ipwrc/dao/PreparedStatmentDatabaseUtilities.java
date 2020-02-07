@@ -39,7 +39,7 @@ public class PreparedStatmentDatabaseUtilities {
 	   
 	   boolean isUpdate = false;
 	   
-	   return  connectDatabaseJson(databaseModel, query, values,isUpdate );
+	   return  connectDatabaseThrowQueryReturnsJsonString(databaseModel, query, values,isUpdate );
    }
    
    
@@ -51,7 +51,7 @@ public class PreparedStatmentDatabaseUtilities {
      *
      */
     //use a database object to connect to database and perform a query
-    public String connectDatabaseJson(
+    public String connectDatabaseThrowQueryReturnsJsonString(
     		DatabaseModel databaseModel, 
     		String query, 
     		List < String > values,

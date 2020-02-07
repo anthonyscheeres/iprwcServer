@@ -168,8 +168,8 @@ public class UserResource {
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String createUserModel(UserModel u )  {
-		return accountController.handleCreateUserModel2(u);
+	public String createUserModelRegisterUserInDatabase(UserModel u )  {
+		return accountController.handleCreateUserModelIndatabase(u);
 	}
 	
 	/**
